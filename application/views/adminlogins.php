@@ -13,11 +13,12 @@
 <body>
 	<div id="container">
 		<h1>PokeDealer Login</h1>
-		<form>
+		<form action="/admins/login" method="post">
 			PokEmail: <input type="text" name="email" placeholder="email">
 			Password: <input type="password" name="password" placeholder="********">
 			<input type="submit" value="Login">
 		</form>
+		<?= $this->session->flashdata("errors") ?>
 	</div>
 </body>
 </html>
