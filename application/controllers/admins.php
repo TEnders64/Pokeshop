@@ -4,7 +4,15 @@ class Admins extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('adminslogins');
+		$this->load->view('adminlogins');
+	}
+
+	public function search_orders(){
+		echo json_encode($this->admin->search_orders($this->input->post()));
+	}
+
+	public function search_pokemon(){
+		echo json_encode($this->admin->search_pokemon($this->input->post()));
 	}
 }
 ?>

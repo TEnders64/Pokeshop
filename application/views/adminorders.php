@@ -2,17 +2,23 @@
 <html>
 <head>
 	<title>PokeOrders</title>
-	<link rel="stylesheet" type="text/css" href="show_style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/style.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-
+			$('form').submit(function(){
+				var url = $(this).attr('action');
+				$.post(url, $(this).serialize(), function(output){
+					console.log(output);
+					},'json');
+				return false;
+			});
 		}) //end of document JQuery 
 	</script><!-- end script -->
 </head><!-- end head -->
 <body>
 <div id="container">
-	<form id="search">
+	<form action="/admins/search_orders" method="post">
 		<input type="text" name="search">
 		<input type="submit" value="Search">
 	</form>
