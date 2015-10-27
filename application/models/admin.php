@@ -13,6 +13,18 @@ class Admin extends CI_Model {
 			$query = "SELECT id FROM admins WHERE email = ? AND password =?";
 			$values = array($post['email'], $post['password']);
 			$admin = $this->db->query($query, $values)->row_array();
+			if(!empty($admin)){
+				//admin found
+				$this->session->set_userdata("id", $admin['id']);
+				return true;
+			}
+			else{
+				//no admin
+				$this->session->set_flashdata("errors", "<p>Invalid credentials</p>");
+				return false;
+			}
+		}
+	}
 
 	public function search_pokemon($post){
 		$query = "SELECT * FROM pokemons WHERE name = ?";
@@ -27,17 +39,5 @@ class Admin extends CI_Model {
 		return $this->db->query($query, $values)->result_array();
 	}
 
-			if(!empty($admin)){
-				//admin found
-				$this->session->set_userdata("id", $admin['id']);
-				return true;
-			}
-			else{
-				//no admin
-				$this->session->set_flashdata("errors", "<p>Invalid credentials</p>");
-				return false;
-			}
-		}
-	}
 }
 ?>
