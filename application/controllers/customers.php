@@ -6,5 +6,8 @@ class Customers extends CI_Controller {
 	{
 		$this->load->view('productspage');
 	}
+	public function login(){
+		$this->load->view('show');
+	}
 }
 ?>
