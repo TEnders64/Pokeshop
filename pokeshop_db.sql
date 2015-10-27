@@ -64,7 +64,7 @@ CREATE TABLE `admins` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE `admins` (
 
 LOCK TABLES `admins` WRITE;
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+INSERT INTO `admins` VALUES (1,'todd@todd.com','password','Todd','Enders','2015-10-27 13:23:30','2015-10-27 13:23:30'),(2,'geneva@geneva.com','password','Geneva','Le','2015-10-27 13:24:40','2015-10-27 13:24:40'),(3,'blake@blake.com','password','Blake','Lamb','2015-10-27 13:25:29','2015-10-27 13:25:29');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-26 19:30:51
+-- Dump completed on 2015-10-27 14:12:19
