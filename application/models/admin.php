@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Admin extends CI_Model {
+	
 	public function login($post){
 		$this->form_validation->set_rules("email", "email", "required");
 		$this->form_validation->set_rules("password", "password", "required");
@@ -13,7 +14,6 @@ class Admin extends CI_Model {
 			$values = array($post['email'], $post['password']);
 			$admin = $this->db->query($query, $values)->row_array();
 
-<<<<<<< HEAD
 	public function search_pokemon($post){
 		$query = "SELECT * FROM pokemons WHERE name = ?";
 		$values = $post['search'];
@@ -27,7 +27,6 @@ class Admin extends CI_Model {
 		return $this->db->query($query, $values)->result_array();
 	}
 
-=======
 			if(!empty($admin)){
 				//admin found
 				$this->session->set_userdata("id", $admin['id']);
@@ -40,6 +39,5 @@ class Admin extends CI_Model {
 			}
 		}
 	}
->>>>>>> development
 }
 ?>
