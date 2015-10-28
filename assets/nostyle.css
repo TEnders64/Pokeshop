@@ -1,0 +1,48 @@
+*{
+	font-family: helvetica;
+	padding: 0px;
+	margin:0px;
+/*	border: dotted blue 1px; */
+}
+#container{
+	padding: 75px;
+}
+#header{
+	min-height: 100px;
+}
+#sidePanel{
+	padding: 25px;
+	width: 250px;
+	text-align: center;
+	display: inline-block;
+}
+#mainContent{
+	display: inline-block;
+	width: 600px;
+	height: 450px;
+	margin-left: 20px;
+	padding: 25px
+}
+#textBox{
+	min-height: 300px;
+}
+#textBox p{
+	font-size: 16pt;
+}
+#mainContent form{
+	font-size: 24pt;
+}
+input{
+	font-size: 14pt;
+	padding: 5px;
+	height: 15px;
+}
+#similar{
+	padding: 35px;
+}
+#similarPoke img{
+	margin: 15px;
+	border: 2px solid lightgrey;
+	border-radius: 5px;
+	width: 150px;
+}

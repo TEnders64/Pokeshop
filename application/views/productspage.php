@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="icon" type="image/gif" href="http://orig02.deviantart.net/5de6/f/2010/104/2/5/spinning_poke_ball_by_secondcrimson.gif"/>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 	<title>Pok&eacute;mon</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	
 	<script type="text/javascript">
-	$(document).ready(function(){
-		)};
+	$(document).ready(function() {
+		pages
+		for (var i = 1; i <= pages.length; i++){
+			var html_str2 = ""
+			html_str2 += "<li>"+i+"</li>"
+			$("#pages_bar").append(html_str2)
+		};
+		$(".pageno").on('click', function(){
+			var pageno = event.target.id
+			$("#where_the_pokemon_go").html("<div></div>");
+			for (var i = (pageno - 1) * 72; i <=pageno * 72; i++) {
+				var html_str =""
+				html_str += "<div style='display:inline-block;text-align:center;'>"
+				html_str += "<a href='/views/show_pokemon/'"
+				html_str += "<img src='/assets/img/pokeapi/"+i+".png'>"
+				html_str += "<p>"+pokemon[i].name+"</p>"
+				html_str += "</div>";
+				$("#where_the_pokemon_go").append(html_str);
+			};
+		  });
+	});
 	</script>
 </head>
 <style type="text/css">
@@ -53,7 +73,8 @@
 </style>
 <body>
 <!-- top bar here -->
-<div id="types">
+<div class="row-fluid">
+<div id="types" class="span2">
 	<form>
 		<input type="text" placeholder="pok&eacute;mon name.">
 		<input type="submit">
@@ -103,10 +124,12 @@
 	</ul>
 	<!-- show 4 at first w/ show all button -->
 </div>
-<div id="main_box">
+<div id="main_box" class="span2">
 	<!-- have the type listed here followed by the page number -->
-	<h3>//Type</h3>
-	<div id="navbar">
+	<div class="2">
+		<h3>//Type</h3>
+	</div>
+	<div id="navbar" class="span3 offset 4" style="vertical-alight:top;">
 	<!-- links go forward or back through pages -->
 	<p>first | prev | current page no | next</p>
 	<p>Sorted by</p>
@@ -117,66 +140,19 @@
 		</select>
 	</form>
 	</div>
+	
 	<div id="items_area">
 		<!-- tems go here -->
-		<table>
-			<tr>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-			</tr>
-			<tr>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-				<td class="icons">
-				<img src="pokemon/001.png" height="200px" width="200px">
-				<p>bulbasaur</p>
-				</td>
-			</tr>
-		</table>
+		<!-- 72 -->
+		
+		
 	</div>
 	<div>
-		<!-- pages bar -->
+		<ul  id="pages_bar">
+			
+		</ul>
 	</div>
+</div>
 </div>
 </body>
 </html>
