@@ -8,7 +8,7 @@ class Customers extends CI_Controller {
 	}
 	
 	public function login(){
-		$this->load->view('show');
+		$this->load->view('show_pokemon');
 	}
 }
 ?>
