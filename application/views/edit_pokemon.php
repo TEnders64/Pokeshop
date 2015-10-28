@@ -33,7 +33,7 @@
 	    			</div>
 	    		</div>
 	    		<div class="form-group">
-	    			<label for="exp" class="col-sm-2 control-label">Experience</label>
+	    			<label for="exp" class="col-sm-2 control-label">Exp.</label>
 	    			<div class="col-sm-8 col-sm-offset-2">
 	    				<input type="number" name="exp" value="<?=$pokemon['exp']?>">
 	    			</div>
