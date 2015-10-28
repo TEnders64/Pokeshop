@@ -13,26 +13,7 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('form').submit(function(){
-				var url = $(this).attr('action');
-				$.post(url, $(this).serialize(), function(output){
-					console.log(output);
-					},'json');
-				return false;
-			});
-
-			$('#productTable').on('click','a[pokemon]', function(){
-				var pokeID = $(this).attr("pokemon");
-				if (confirm("Are you sure you want to delete pokemon " + pokeID + "?")){
-					$.post('/admins/delete/'+pokeID, function(){
-						$('#products').prepend("Pokemon "+pokeID+" deleted.");
-						$('#'+pokeID).hide("slow");
-					});
-				}
-				return false;
-			})
-		}) //end of document JQuery 
+	
 	</script><!-- end script -->
 </head><!-- end head -->
 <body>
