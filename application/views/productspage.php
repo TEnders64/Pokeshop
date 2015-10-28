@@ -9,7 +9,7 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$.get("/customers/all_pokemon/", function(pokemon){
+		$.get("/customers/all_pokemon", function(pokemon){
 			console.log(pokemon);
 			var pages = (pokemon.length / 70);
 			var html_str2 = ""
@@ -23,7 +23,7 @@
 				for (var i = ((pageno - 1) * 70) + 1; i <=pageno * 70; i++) {
 					var html_str =""
 					html_str += "<div class='icons' style='display:inline-block;text-align:center;'>"
-					html_str += "<a href='/views/show_pokemon/"+i+"'>"
+					html_str += "<a href='/customers/show/"+i+"'>"
 					html_str += "<img src='/assets/img/pokeapi/"+i+".png'>"
 					html_str += "<p>"+pokemon[i - 1].name+"</p></a>"
 					html_str += "</div>";

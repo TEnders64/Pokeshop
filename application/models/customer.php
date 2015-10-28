@@ -2,8 +2,8 @@
 
 class Customer extends CI_Model {
 
-public function all_pokemons(){
-		$query = "SELECT * FROM pokemons WHERE id BETWEEN 1 AND 10";
+public function all_pokemon(){
+		$query = "SELECT * FROM pokemons";
 		return $this->db->query($query)->result_array();
 
 	}
