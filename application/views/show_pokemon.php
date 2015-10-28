@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>PokeProducts</title>
+	<title>Pokemon Info</title>
 	<link rel="stylesheet" type="text/css" href="/assets/style.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -14,17 +14,23 @@
 	<div id="container">
 		<div id="header"></div> <!-- end Header -->
 		<div id="sidePanel">
-			<h1>Bulbasaur</h1>
-                <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/001.png" alt="bulbasaur" >
+			<h1><?=$pokemon['name']?></h1>
+                <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
             
 		</div> <!-- end SidePanel -->
 		<div id="mainContent">
 			<div id="textBox">
-				<p>dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext dummytext </p>
-				<p>Weight:</p>
-				<p>Height:</p>
-				<p>Type:</p>
-				<p>Price: </p>				
+				<h1>Description:</h1>
+				<p><?=$pokemon['description']?></p>
+				<p>Height: <?=$pokemon['height']?></p>
+				<p>Weight: <?=$pokemon['weight']?></p>
+				<p>Speed: <?=$pokemon['speed']?></p>
+				<p>Experience: <?=$pokemon['exp']?></p>
+				<p>Attack: <?=$pokemon['attack']?></p>
+				<p>Defense: <?=$pokemon['defense']?></p>
+				<p>Abilities: <?=$pokemon['abilities']?></p>
+				<p>Type: <?=$pokemon['types']?></p>
+				<p>Price: $<?=$pokemon['price']?></p>						
 			</div>
 			<form>
 				<input type="hidden">
