@@ -8,26 +8,29 @@
 	<title>Pok&eacute;mon</title>
 	
 	<script type="text/javascript">
-	$(document).ready(function() {
-		pages
-		for (var i = 1; i <= pages.length; i++){
+	$(document).ready(function(){
+		$.get("/customers/all_pokemon/", function(pokemon){
+			console.log(pokemon);
+			var pages = (pokemon.length / 70);
 			var html_str2 = ""
-			html_str2 += "<li>"+i+"</li>"
-			$("#pages_bar").append(html_str2)
-		};
-		$(".pageno").on('click', function(){
-			var pageno = event.target.id
-			$("#where_the_pokemon_go").html("<div></div>");
-			for (var i = (pageno - 1) * 72; i <=pageno * 72; i++) {
-				var html_str =""
-				html_str += "<div style='display:inline-block;text-align:center;'>"
-				html_str += "<a href='/views/show_pokemon/'"
-				html_str += "<img src='/assets/img/pokeapi/"+i+".png'>"
-				html_str += "<p>"+pokemon[i].name+"</p>"
-				html_str += "</div>";
-				$("#where_the_pokemon_go").append(html_str);
+			for (var i = 1; i <= pages; i++){
+				html_str2 += "<li class='pageno' id='"+i+"'>"+i+"</a></li>";
 			};
-		  });
+			$(".pagination").html(html_str2)
+			$(".pageno").on('click', function(){
+				var pageno = event.target.id
+				$("#where_the_pokemon_go").html("<div></div>");
+				for (var i = ((pageno - 1) * 70) + 1; i <=pageno * 70; i++) {
+					var html_str =""
+					html_str += "<div class='icons' style='display:inline-block;text-align:center;'>"
+					html_str += "<a href='/views/show_pokemon/"+i+"'>"
+					html_str += "<img src='/assets/img/pokeapi/"+i+".png'>"
+					html_str += "<p>"+pokemon[i - 1].name+"</p></a>"
+					html_str += "</div>";
+					$("#where_the_pokemon_go").append(html_str);
+				};
+			});
+		},"json");
 	});
 	</script>
 </head>
@@ -67,9 +70,106 @@
 
 	}
 	.icons{
-		width: 210px;
-		height: 350px;
+		width: 140px;
+		height: 130px;
 	}
+	/*here starts the css after the pages work, earlier may need to be made to work with boot strap*/
+	.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #337ab7;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pagination > li:hover,
+.pagination > li > span:hover,
+.pagination > li:focus,
+.pagination > li > span:focus {
+  z-index: 3;
+  color: #23527c;
+  background-color: #eeeeee;
+  border-color: #dddddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #ffffff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777777;
+  background-color: #ffffff;
+  border-color: #dddddd;
+  cursor: not-allowed;
+}
+.pagination-lg > li,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.pagination-sm > li,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
 </style>
 <body>
 <!-- top bar here -->
@@ -130,8 +230,6 @@
 		<h3>//Type</h3>
 	</div>
 	<div id="navbar" class="span3 offset 4" style="vertical-alight:top;">
-	<!-- links go forward or back through pages -->
-	<p>first | prev | current page no | next</p>
 	<p>Sorted by</p>
 	<form>
 		<select>
@@ -141,13 +239,18 @@
 	</form>
 	</div>
 	
-	<div id="items_area">
+	<div id="where_the_pokemon_go">
 		<!-- tems go here -->
 		<!-- 72 -->
 		
 		
 	</div>
 	<div>
+		<nav>
+		  <ul class="pagination">
+		  <li>test</li>   
+		  </ul>
+		</nav>
 		<ul  id="pages_bar">
 			
 		</ul>

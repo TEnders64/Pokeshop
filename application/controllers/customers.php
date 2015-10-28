@@ -14,5 +14,8 @@ class Customers extends CI_Controller {
 	public function add_to_cart(){
 		
 	}
+	public function all_pokemon(){		
+		echo json_encode($this->customer->all_pokemon($this->input->get()));
+	}
 }
 ?>
