@@ -2,24 +2,30 @@
 <html>
 <head>
 	<title>Pokemon Info</title>
-	<link rel="stylesheet" type="text/css" href="/assets/style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/style_show_pokemon.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
-		}) //end of document JQuery 
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	
 	</script><!-- end script -->
 </head><!-- end head -->
 <body>
 	<div id="container">
 		<div id="header"></div> <!-- end Header -->
-		<div id="sidePanel">
+		<div class="row">
+		<div class="col-md-6 col-md-offset-6">
+			<div class="col-md-4">
 			<h1><?=$pokemon['name']?></h1>
-                <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
-            
-		</div> <!-- end SidePanel -->
-		<div id="mainContent">
-			<div id="textBox">
+            <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
+				</div>
+				<div class="col-md-6"
 				<h1>Description:</h1>
 				<p><?=$pokemon['description']?></p>
 				<p>Height: <?=$pokemon['height']?></p>
@@ -30,14 +36,17 @@
 				<p>Defense: <?=$pokemon['defense']?></p>
 				<p>Abilities: <?=$pokemon['abilities']?></p>
 				<p>Type: <?=$pokemon['types']?></p>
-				<p>Price: $<?=$pokemon['price']?></p>						
-			</div>
+				<p>Price: $<?=$pokemon['price']?></p>
 			<form>
 				<input type="hidden">
 				<input type="number" name="quantity" min="1" max="10">
 				<input type="submit" value="BUY">
 			</form>
-		</div> <!-- end MainContent -->
+				</div>						
+			</div>
+		</div> 
+
+
 		<div id="similar">
 			<h2>Similar Pokemons:</h2>
 			<div id="similarPoke">
