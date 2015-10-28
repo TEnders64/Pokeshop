@@ -58,4 +58,33 @@
 	</nav>
 </div>
 </body>
+<script>
+	$(document).ready(function(){
+		$('form').submit(function(){
+			$.post($(this).attr('action'), $(this).serialize(), function(pokemon){
+				console.log(this);
+			}, 'json');
+		})
+	})
+	$(document).ready(function(){
+		$('form').submit(function(){
+			var url = $(this).attr('action');
+			$.post(url, $(this).serialize(), function(output){
+				console.log(output);
+				},'json');
+			return false;
+		});
+
+		$('#productTable').on('click','a[pokemon]', function(){
+			var pokeID = $(this).attr("pokemon");
+			if (confirm("Are you sure you want to delete pokemon " + pokeID + "?")){
+				$.post('/admins/delete/'+pokeID, function(){
+					$('#products').prepend("Pokemon "+pokeID+" deleted.");
+					$('#'+pokeID).hide("slow");
+				});
+			}
+			return false;
+		})
+	}) //end of document JQuery 
+</script>
 </html>

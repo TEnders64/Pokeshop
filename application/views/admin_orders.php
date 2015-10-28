@@ -10,16 +10,20 @@
 		  </div>
 		  <button type="submit" class="btn btn-primary">Search</button>
 		</form>
+		<div class="btn-group col-md-2 pull-right" id="sort">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		   Sort By <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a href="#">Recent Orders</a></li>
+		    <li><a href="#">Older Orders</a></li>
+		    <li><a href="#">Last Name: A-Z</a></li>
+		    <li><a href="#">Last Name: Z-A</a></li>
+		  </ul>
+		</div>
 	</div>
-	<select name="filter">
-		<option value="">Sort by...</option>
-		<option value="">Lowest Number First</option>
-		<option value="">Highest Number First</option>
-		<option value="">A-Z</option>
-		<option value="">Z-A</option>
-	</select>
-	<div id="products">
-		<table id="productTable" class="table table-striped table-hover">
+	<div id="orders">
+		<table id="ordersTable" class="table table-striped table-hover">
 			<thead>
 				<th class="text-center">Order ID</th>
 				<th class="text-center">First Name</th>
@@ -36,11 +40,16 @@
 				<td class="text-center">Billing</td>
 				<td class="text-center">$99999999.00</td>
 				<td class="text-center">
-					<select name="status">
-						<option value="processing">Order in Process</option>
-						<option value="shipped">Order Shipped</option>
-						<option value="cancelled">Cancelled</option>
-					</select>
+				<div class="btn-group" id="status">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				   Status <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a href="#">Order in Process</a></li>
+				    <li><a href="#">Order Shipped</a></li>
+				    <li><a href="#">Cancelled</a></li>
+				  </ul>
+				</div>
 				</td>
 			</tr>
 			</tbody>
@@ -48,4 +57,17 @@
 	</div>
 </div>
 </body>
+<script>
+	$(document).ready(function(){
+
+		$('#status').on('click', 'a', function(){
+			$('#status>button').text($(this).text());
+		})
+
+		$('#sort').on('click', 'a', function(){
+			$('#sort>button').text($(this).text());
+		})
+
+	})
+</script>
 </html>
