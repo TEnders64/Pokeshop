@@ -50,8 +50,8 @@
 				<td><img src='/assets/img/pokeapi/<?= $pokemon['id'] ?>.png'></img></td>
 				<td><?= $pokemon['id'] ?></td>
 				<td><?= $pokemon['name'] ?></td>
-				<td><?= "INVENTORY" ?></td>
-				<td><?= "QUANTITY SOLD" ?></td>
+				<td><?= $pokemon['quantity'] ?></td>
+				<td><?= $pokemon['sold'] ?></td>
 				<td><a href="/admins/edit/<?= $pokemon['id'] ?>">edit</a>   <a pokemon="<?= $pokemon['id'] ?>" href="#">delete</a></td>
 				</tr>
 <?php } ?>
