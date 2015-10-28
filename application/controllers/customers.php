@@ -7,8 +7,12 @@ class Customers extends CI_Controller {
 		$this->load->view('productspage');
 	}
 	
-	public function show(){
-		$this->load->view('show_pokemon');
+	public function show($pokemon_id){
+		$pokemon = $this->customer->one_pokemon($pokemon_id);
+		$this->load->view('show_pokemon', array("pokemon" => $pokemon));
+	}
+	public function add_to_cart(){
+		
 	}
 }
 ?>

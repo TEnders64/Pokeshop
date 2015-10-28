@@ -11,10 +11,12 @@
 		  </div>
 		  <button type="submit" class="btn btn-primary">Search</button>
 		</form>
+		<a href="/admins/admin_pokemons"><button type="submit" class="btn btn-info col-md-1">Show All</button></a>
 		<a href="/admins/new_pokemon"><button class="btn btn-md btn-success col-md-2 pull-right">Add New Pokemon</button></a>
 	</div>
 	<div class="row">
 		<div id="products">
+			<div id="results" class="alert alert-warning" role="alert"></div>
 			<table id="productTable" class="table table-striped table-hover table-condensed">
 				<thead>
 					<th class="text-center">Picture</th>
@@ -39,14 +41,14 @@
 			</table>
 		</div>
 	</div>
-	<nav class="">
+	<nav class="text-center">
   	<ul class="pagination">
 	    <li>
 	      <a href="#" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
-<?php 	for ($page = 0; $page < count($pokemons)/2; $page++){ ?>
+<?php 	for ($page = 0; $page < count($pokemons)/30; $page++){ ?>
 				<li><a href="#"><?= $page+1 ?></a></li>
 <?php 	} ?>
 	    <li>
@@ -60,18 +62,33 @@
 </body>
 <script>
 	$(document).ready(function(){
-		$('form').submit(function(){
-			$.post($(this).attr('action'), $(this).serialize(), function(pokemon){
-				console.log(this);
-			}, 'json');
-		})
-	})
-	$(document).ready(function(){
+		$('#results').hide();
+
 		$('form').submit(function(){
 			var url = $(this).attr('action');
 			$.post(url, $(this).serialize(), function(output){
 				console.log(output);
-				},'json');
+				if (output.length < 1){
+					$('#results').slideDown('fast', 'linear', function(){
+						$('#results').html("<p>No Results</p>");
+						$('#results').fadeOut('slow');
+					});
+					return false;
+				}else{
+					var html_str = "";
+					for (var i = 0; i < output.length; i++){
+						html_str += "<tr id='" + output[i].id + "'>";
+						html_str += "<td class='text-center'><img src='/assets/img/pokeapi/" + output[i].id + ".png' width='50px' height='50px'></img></td>";
+						html_str += "<td class='text-center'>" + output[i].id + "</td>";
+						html_str += "<td class='text-center'>" + output[i].name + "</td>";
+						html_str += "<td class='text-center'>" + output[i].quantity + "</td>";
+						html_str += "<td class='text-center'>" + output[i].sold + "</td>";
+						html_str += "<td class='text-center'><a href='/admins/edit/"+ output[i].id +"'>edit</a> | <a pokemon='"+ output[i].id +"' href='#'>delete</a></td>";
+						html_str += "</tr>";
+					}
+					$('#productTable>tbody').html(html_str);
+				}
+			},'json');
 			return false;
 		});
 

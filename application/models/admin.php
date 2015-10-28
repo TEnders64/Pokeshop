@@ -29,9 +29,7 @@ class Admin extends CI_Model {
 	public function search_pokemon($post){
 		$query = "SELECT * FROM pokemons WHERE name LIKE ? ";
 		$values = '%'. $post['search'] . '%';
-		var_dump($values);
-		var_dump($this->db->query($query, $values)->result_array());
-		die();
+		return $this->db->query($query, $values)->result_array();
 	}
 
 	//work yet to do...
@@ -42,8 +40,9 @@ class Admin extends CI_Model {
 	}
 
 	public function all_pokemons(){
-		$query = "SELECT * FROM pokemons WHERE id BETWEEN 1 AND 10";
-		return $this->db->query($query)->result_array();
+		$query = "SELECT * FROM pokemons WHERE id BETWEEN ? AND ?";
+		$values = array(1,100);
+		return $this->db->query($query,$values)->result_array();
 
 	}
 

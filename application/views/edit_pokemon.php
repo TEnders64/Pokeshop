@@ -1,33 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<title>Edit Pokemon</title>
-	<link rel="stylesheet" type="text/css" href="/assets/style.css">
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
+<?php $this->load->view('partials/admin_header'); ?>
 
-		}) //end of document JQuery 
-	</script><!-- end script -->
-</head><!-- end head -->
-<body>
-	<div id="container">
-		<div id="header"><?php $this->load->view('partials/admin_header'); ?></div> <!-- end Header -->
-			
+	<div class="container">
+		<div class="row">
 		<div class="col-md-3 col-md-offset-2">
 			<h2>Edit Pokemon: <?=$pokemon['id']?></h2>
 			<h1><?=$pokemon['name']?></h1>
                 <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
             </div>
-        
 
         <div class="col-md-2">
             <form class="form-horizontal" action="/admins/update/<?= $pokemon['id'] ?>" method="post">  
 	       		<div class="form-group">
-	       			<div class="row">
 	    				<label for="description" class="col-sm-2 control-label">Description</label>
-	    			</div>
-					<textarea  class="col-md-10" name="description" rows="4"><?=$pokemon['description']?></textarea>
+					<textarea  class="form-control col-sm-offset-2" name="description" rows="4"><?=$pokemon['description']?></textarea>
 	    		</div> 
 	    		<div class="form-group">
 	    			<label for="height" class="col-sm-2 control-label">Height</label>
@@ -85,6 +70,7 @@
 	    		</div>
 				<input type="submit" value="SAVE FOREVER">
 			</form>
+		</div>
 </div> <!-- end container -->
 
 </body><!-- end body -->
