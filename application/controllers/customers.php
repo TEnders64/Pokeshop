@@ -11,5 +11,8 @@ class Customers extends CI_Controller {
 		$pokemon = $this->customer->one_pokemon($pokemon_id);
 		$this->load->view('show_pokemon', array("pokemon" => $pokemon));
 	}
+	public function add_to_cart(){
+		
+	}
 }
 ?>

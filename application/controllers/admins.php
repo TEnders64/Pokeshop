@@ -18,8 +18,8 @@ class Admins extends CI_Controller {
 			redirect("/admins/index");
 		}
 	}
-	public function logout(){
-		$this->session->session_destroy();
+	public function logoff(){
+		$this->session->sess_destroy();
 		redirect("/admins/index");
 	}
 	
