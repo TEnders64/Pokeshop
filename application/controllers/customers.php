@@ -8,8 +8,20 @@ class Customers extends CI_Controller {
 	}
 	
 	public function show($pokemon_id){
-		$pokemon = $this->customer->one_pokemon($pokemon_id);
-		$this->load->view('show_pokemon', array("pokemon" => $pokemon));
+		$pokemons = $this->customer->one_pokemon($pokemon_id);
+
+		$others = $this->customer->similar($pokemons['types']);
+
+		$similars = array();
+		for ($i = 0; $i < 5; $i++){
+			$similar = $others[rand(0,count($others)-1)];
+			$similars[] = $similar;
+		}
+
+		$this->load->view('show_pokemon', array(
+			"pokemon" => $pokemons,
+			"similars" => $similars
+			));
 	}
 	public function add_to_cart(){
 		

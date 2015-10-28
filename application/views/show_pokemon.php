@@ -45,13 +45,16 @@
 				</div>						
 			</div>
 		</div> 
-
-
 		<div id="similar">
-			<h2>Similar Pokemons:</h2>
-			<div id="similarPoke">
-				<img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/002.png" alt="venusaur">
-				<img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/003.png" alt="ivysaur">
+			<div class="container">
+				<div class="row">
+					<h2>Similar Pokemons:</h2>
+					<div id="similarPoke">
+		<?php 		foreach ($similars as $similar){?>
+						<a href="/customers/show/<?= $similar['id'] ?>"><img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf('%03d', $similar['id']) ?>.png"></a>
+		<?php } ?>
+					</div>
+				</div>
 			</div>
 		</div> <!-- end Similar -->
 	</div> <!-- end container -->
