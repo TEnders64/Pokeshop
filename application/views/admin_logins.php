@@ -2,7 +2,16 @@
 <html>
 <head>
 	<title>Admin Login</title>
-	<link rel="stylesheet" type="text/css" href="/assets/style.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -11,14 +20,24 @@
 	</script><!-- end script -->
 </head><!-- end head -->
 <body>
-	<div id="container">
-		<h1>PokeDealer Login</h1>
+	<div class="col-md-4 col-md-offset-4">
 		<form action="/admins/login" method="post">
-			PokEmail: <input type="text" name="email" placeholder="email">
-			Password: <input type="password" name="password" placeholder="********">
+		<div class="form-group">
+			<h1>PokeDealer Login</h1>
+		</div>
+		<div class="form-group">
+			<label for="email">PokEmail:</label>
+			<input type="text" name="email" placeholder="email">
+		</div>
+		<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" name="password" placeholder="********">
+		</div>
 			<input type="submit" value="Login">
+		<div class="form-group">
+			<?= $this->session->flashdata("errors") ?>
+		</div>
 		</form>
-		<?= $this->session->flashdata("errors") ?>
 	</div>
 </body>
 </html>

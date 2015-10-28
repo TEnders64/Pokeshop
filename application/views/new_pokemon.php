@@ -1,3 +1,4 @@
+<?php $this->load->view('partials/admin_header'); ?>
 <!DOCTYPE HTML>
 <html>
 <head>
