@@ -42,13 +42,23 @@ class Admins extends CI_Controller {
 	public function edit($pokemon_id){
 		// var_dump($id);
 		// die();
-		$pokemon = $this->admin->one_pokemon($pokemon_id);
-		$this->load->view('edit_pokemon', array("pokemon" => $pokemon));
+		if ($this->session->userdata('id') != null){
+			$pokemon = $this->admin->one_pokemon($pokemon_id);
+			$this->load->view('edit_pokemon', array("pokemon" => $pokemon));
+		}
+		else{
+			redirect("/customers");
+		}
 	}
 
 	public function delete($id){
 		var_dump($id);
 		die();
+	}
+
+	public function update($id){
+		$this->admin->update($id, $this->input->post());
+		redirect("/admins/admin_pokemons");
 	}
 
 	public function admin_pokemons(){

@@ -36,7 +36,7 @@
 			<tbody>
 <?php 			foreach ($pokemons as $pokemon){?>
 				<tr>
-				<td><img src='/assets/img/pokemon/<?= sprintf("%03d", $pokemon['id']) ?>.png'></img></td>
+				<td><img src='/assets/img/pokeapi/<?= $pokemon['id'] ?>.png'></img></td>
 				<td><?= $pokemon['id'] ?></td>
 				<td><?= $pokemon['name'] ?></td>
 				<td><?= "INVENTORY" ?></td>

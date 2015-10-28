@@ -51,5 +51,12 @@ class Admin extends CI_Model {
 		return $this->db->query($query, $values)->row_array();
 	}
 
+	public function update($id, $post){
+		$query = "UPDATE pokemons SET price = ?, description = ?, height = ?, weight = ?, speed = ?, exp = ?, attack = ?, defense = ?, abilities = ?, types = ?, updated_at = NOW() WHERE id = ?";
+		$values = array($post['price'], $post['description'], $post['height'], $post['weight'], $post['speed'], $post['exp'], $post['attack'], $post['defense'], $post['abilities'], $post['types'], $id);
+
+		$this->db->query($query, $values);
+	}
+
 }
 ?>
