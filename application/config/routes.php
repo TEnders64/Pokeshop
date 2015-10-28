@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-$route['default_controller'] = "admins";
+$route['default_controller'] = "customers";
 $route['404_override'] = '';
 
 

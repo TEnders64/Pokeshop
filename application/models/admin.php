@@ -46,9 +46,19 @@ class Admin extends CI_Model {
 	}
 
 	public function one_pokemon($pokemon_id){
-		$query ="SELECT * FROM pokemons WHERE id = ?";
+		$query = "SELECT * FROM pokemons WHERE id = ?";
 		$values = $pokemon_id;
 		return $this->db->query($query, $values)->row_array();
+	}
+
+	public function create($post){
+		$count = $this->db->query("SELECT COUNT(id) FROM pokemons");
+		$count = $count + 1;
+		$query = "INSERT INTO pokemons (id, name, price, description, height, weight, speed, exp, attack, defense, abilities, types, created_at, updated_at)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?, NOW(), NOW())";
+		$values = array($count, $post['name'], $post['price'], $post['description'], $post['height'], $post['weight'], $post['speed'], $post['exp'], $post['attack'], $post['defense'], $post['abilities'], $post['types']);
+
+		$this->db->query($query,$values);
 	}
 
 	public function update($id, $post){
@@ -56,6 +66,13 @@ class Admin extends CI_Model {
 		$values = array($post['price'], $post['description'], $post['height'], $post['weight'], $post['speed'], $post['exp'], $post['attack'], $post['defense'], $post['abilities'], $post['types'], $id);
 
 		$this->db->query($query, $values);
+	}
+
+	public function delete($id){
+		$query = "DELETE FROM pokemons WHERE id = ?";
+		$values = $id;
+
+		$this->db->query($query,$values);
 	}
 
 }

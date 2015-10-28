@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>PokeOrders</title>
+	<title>Pokemons</title>
 	<link rel="stylesheet" type="text/css" href="/assets/style.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -13,6 +13,17 @@
 					},'json');
 				return false;
 			});
+
+			$('#productTable').on('click','a[pokemon]', function(){
+				var pokeID = $(this).attr("pokemon");
+				if (confirm("Are you sure you want to delete pokemon " + pokeID + "?")){
+					$.post('/admins/delete/'+pokeID, function(){
+						$('#products').prepend("Pokemon "+pokeID+" deleted.");
+						$('#'+pokeID).hide("slow");
+					});
+				}
+				return false;
+			})
 		}) //end of document JQuery 
 	</script><!-- end script -->
 </head><!-- end head -->
@@ -35,13 +46,13 @@
 			</thead>
 			<tbody>
 <?php 			foreach ($pokemons as $pokemon){?>
-				<tr>
+				<tr id="<?= $pokemon['id'] ?>">
 				<td><img src='/assets/img/pokeapi/<?= $pokemon['id'] ?>.png'></img></td>
 				<td><?= $pokemon['id'] ?></td>
 				<td><?= $pokemon['name'] ?></td>
 				<td><?= "INVENTORY" ?></td>
 				<td><?= "QUANTITY SOLD" ?></td>
-				<td><a href="/admins/edit/<?= $pokemon['id'] ?>">edit</a>   <a href="/admins/delete/<?= $pokemon['id'] ?>">delete</a></td>
+				<td><a href="/admins/edit/<?= $pokemon['id'] ?>">edit</a>   <a pokemon="<?= $pokemon['id'] ?>" href="#">delete</a></td>
 				</tr>
 <?php } ?>
 			</tbody>

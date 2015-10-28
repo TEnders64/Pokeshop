@@ -35,8 +35,13 @@ class Admins extends CI_Controller {
 		echo json_encode($this->admin->search_pokemon($this->input->post()));
 	}
 
-	public function new_pokemons(){
+	public function new_pokemon(){
+		$this->load->view("new_pokemon");
+	}
 
+	public function create(){
+		$this->admin->create($this->input->post());
+		redirect("/admins/admin_pokemons");
 	}
 
 	public function edit($pokemon_id){
@@ -52,8 +57,7 @@ class Admins extends CI_Controller {
 	}
 
 	public function delete($id){
-		var_dump($id);
-		die();
+		$this->admin->delete($id);
 	}
 
 	public function update($id){
