@@ -7,7 +7,7 @@ class Customers extends CI_Controller {
 		$this->load->view('productspage');
 	}
 	
-	public function login(){
+	public function show(){
 		$this->load->view('show_pokemon');
 	}
 }
