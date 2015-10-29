@@ -91,7 +91,7 @@ class Customers extends CI_Controller {
 			$cart[$id] = $quantity;
 
 		}
-
+		$this->session->set_flashdata('success', '<h5 class="text-center">Cart Updated Successfully!</h5>');
 		$this->session->set_userdata('cart', $cart);
 
 		redirect("/customers/loadcart");

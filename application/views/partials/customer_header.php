@@ -17,7 +17,7 @@
         <li><a href="/customers">Home <span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/customers/loadcart">Cart (<?= count($cart) ?>)</a></li>
+        <li><a href="/customers/loadcart">Cart (<?php $sum = 0; foreach($cart as $id => $quantity){$sum += $quantity;} echo $sum ?>)</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
