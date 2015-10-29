@@ -118,7 +118,11 @@ class Customers extends CI_Controller {
 	}
 
 	public function login(){
-		$this->load->view('customer_login');
+		if ($this->session->userdata('id')){
+			redirect('/customers/checkout');
+		}else{
+			$this->load->view('customer_login');
+		}
 	}
 
 	public function validate_login(){

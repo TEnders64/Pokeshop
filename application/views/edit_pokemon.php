@@ -1,4 +1,4 @@
-<?php $this->load->view('partials/admin_header'); ?>
+<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
 
 	<div class="container">
 		<div class="row">

@@ -17,7 +17,7 @@
         <li><a href="/customers">Home <span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/customers/loadcart">Cart ()</a></li>
+        <li><a href="/customers/loadcart">Cart (<?= count($cart) ?>)</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

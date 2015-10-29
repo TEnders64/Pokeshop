@@ -36,7 +36,7 @@
 	</script><!-- end script -->
 </head>
 <body>
-<?php $this->load->view('partials/customer_header') ?>
+<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
 	<div class="container">
 		<div class="row">
 			<h3 class="col-md-3">Your PokeCart!</h3>

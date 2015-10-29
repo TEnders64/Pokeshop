@@ -14,6 +14,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
+	<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
 	<h1 class="text-center">Pok&eacute;Login or Register First</h1>
 	<div class="row">
 		<div class="col-md-3 col-md-offset-1">		

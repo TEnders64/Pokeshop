@@ -23,10 +23,9 @@
 	</script><!-- end script -->
 </head>
 <body>
-<?php $this->load->view('partials/customer_header') ?>
+<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
 	<div class="container">
 		<div class="row">
-			<?= $this->session->flashdata("success") ?>
 			<h3 class="col-md-2">Your Cart</h3>
 			<a href="/customers" class="col-md-2 col-md-offset-8"><button class="btn btn-info pull-right">Continue Shopping</button></a>
 			<table class="table table-striped table-hover table-condensed">

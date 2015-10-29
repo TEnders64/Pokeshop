@@ -17,6 +17,7 @@
 	</script><!-- end script -->
 </head><!-- end head -->
 <body>
+<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
 	<div id="container">
 		<div id="header"></div> <!-- end Header -->
 		<div class="row">
