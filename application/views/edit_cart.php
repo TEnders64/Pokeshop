@@ -16,8 +16,8 @@
 	 	$('table').on('click','button',function(){
 	 		var id = $(this).attr('pokemon');
 	 		console.log(id);
-	 		$('#'+id).slideUp('slow');
-	 		
+	 		$('#'+id).remove();
+
 	 		return false;
 	 	});
 

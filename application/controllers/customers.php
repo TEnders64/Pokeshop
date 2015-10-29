@@ -87,20 +87,16 @@ class Customers extends CI_Controller {
 	}
 
 	public function update_cart(){
-		// var_dump($this->input->post());
-		// die();
 
-		// var_dump($this->input->post());
-		$cart = $this->session->userdata('cart');
+		$cart = array();
 
 		foreach ($this->input->post() as $id => $quantity){
 			$cart[$id] = $quantity;
-			// $this->session->set_userdata('cart'[$id] => $quantity);
 
 		}
-		// var_dump($cart);
-		// die();
+
 		$this->session->set_userdata('cart', $cart);
+
 		redirect("/customers/loadcart");
 	}
 
