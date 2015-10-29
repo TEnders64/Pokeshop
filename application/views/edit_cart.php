@@ -12,6 +12,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 	 $(document).ready(function(){
+	 	$('#update').hide();
+
+	 	$('form').on('change',function(){
+	 		$('#update').fadeIn('slow');
+	 	});
+
+	 	$('td>button').on('click',function(){
+	 		$('#update').fadeIn('slow');
+	 	});
 
 	 	$('table').on('click','button',function(){
 	 		var id = $(this).attr('pokemon');
@@ -20,6 +29,8 @@
 
 	 		return false;
 	 	});
+
+	 	$('h5').css('color','green').fadeOut(3000);
 
 	 })
 	</script><!-- end script -->
@@ -54,9 +65,9 @@
 			<?php } ?>
 					</tbody>
 				</table>  
+				<button class="btn btn-warning text-center col-md-4 col-md-offset-4" id="update" type="submit">Update Cart</button>
 				<a href="/customers/login"><button type="button" class="btn btn-success pull-right">Checkout</button></a>
-				<button class="btn btn-warning pull-right" type="submit">Update Cart</button>
-				
+				<?= $this->session->flashdata('success') ?>
 			</form>
 		</div>
 	</div>
