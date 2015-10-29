@@ -15,18 +15,28 @@
 	<script type="text/javascript">
 	
 	</script><!-- end script -->
+	<style>
+	 	.panel{
+	 		background: rgba(10,10,10,0.3);
+	 		color: white;
+	 		padding-bottom: 15px;
+	 		margin-bottom: 0px;
+	 	}
+	 	.name{
+	 		color: #64B94A;
+	 	}
+	</style>
 </head><!-- end head -->
 <body>
 <?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
 	<div id="container">
-		<div id="header"></div> <!-- end Header -->
 		<div class="row">
 		<div class="col-md-6 col-md-offset-6">
-			<div class="col-md-4">
+			<div class="col-md-4 name">
 			<h1><?=$pokemon['name']?></h1>
             <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-7 panel">
 				<h1>Description:</h1>
 				<p><?=$pokemon['description']?></p>
 				<p>Height: <?=$pokemon['height']?></p>
@@ -38,31 +48,31 @@
 				<p>Abilities: <?=$pokemon['abilities']?></p>
 				<p>Type: <?=$pokemon['types']?></p>
 				<p>Price: $<?=$pokemon['price']?></p>
-				<form class="form-inline col-md-4" action="/customers/add_to_cart" method="post">
+				<form class="form-inline" action="/customers/add_to_cart" method="post">
 				  <input type="hidden" name="id" value="<?= $pokemon['id'] ?>"/>
 				  <div class="form-group">
 				    <label class="sr-only" for="buy">Buy</label>
-				    <div class="input-group">
-				      <input type="number" name="quantity" class="form-control" id="buy" min="1" max="10">
-				    </div>
+				    <input type="number" name="quantity" class="form-control" id="buy" min="1" max="10">
 				  </div>
 				  <button type="submit" class="btn btn-primary">Buy</button>
 				</form>
 				</div>						
 			</div>
 		</div> 
-		<div id="similar">
-			<div class="container">
-				<div class="row">
-					<h2>Similar Pokemons:</h2>
-					<div id="similarPoke">
-		<?php 		foreach ($similars as $similar){?>
-						<a href="/customers/show/<?= $similar['id'] ?>"><img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf('%03d', $similar['id']) ?>.png"></a>
-		<?php } ?>
+		<div class="row">
+			<div id="similar">
+				<div class="container">
+					<div class="row">
+						<h2>Similar Pokemons:</h2>
+						<div id="similarPoke">
+			<?php 		foreach ($similars as $similar){?>
+							<a href="/customers/show/<?= $similar['id'] ?>"><img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf('%03d', $similar['id']) ?>.png"></a>
+			<?php } ?>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div> <!-- end Similar -->
+			</div> <!-- end Similar -->
+		</div>
 	</div> <!-- end container -->
 </body><!-- end body -->
 </html>

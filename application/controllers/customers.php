@@ -33,14 +33,14 @@ class Customers extends CI_Controller {
 			$items[$this->input->post('id')] = $this->input->post('quantity');
 
 		 	$this->session->set_userdata("cart", $items);
-
+		 	$id = $this->input->post('id');
 
 		}else{
 
 			$this->session->set_userdata("cart", array($this->input->post('id') => $this->input->post('quantity')));
 
 		}
-		 	redirect("/customers");
+		 	redirect("/customers/show/".$id);
 	}
 
 	public function loadcart(){
