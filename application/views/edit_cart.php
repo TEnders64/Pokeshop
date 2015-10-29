@@ -11,15 +11,17 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-	 // $(document).ready(function(){
+	 $(document).ready(function(){
 
-	 // 	var total = 0;
-	 // 	$('.total').each(function(){
-	 // 		total += parseInt($(this).html());
-	 // 	});
-	 // 	$('#total').html('Total: $'+total);
+	 	$('table').on('click','button',function(){
+	 		var id = $(this).attr('pokemon');
+	 		console.log(id);
+	 		$('#'+id).slideUp('slow');
+	 		
+	 		return false;
+	 	});
 
-	 // })
+	 })
 	</script><!-- end script -->
 </head>
 <body>
@@ -39,20 +41,18 @@
 					</thead>
 					<tbody>
 			<?php  	foreach ($cart as $pokemon){ ?>
-						<tr>
+						<tr id="<?= $pokemon['id'] ?>">
 							<td class="text-center"><?= $pokemon['name'] ?></td>
 							<td class="text-center"><?= $pokemon['price'] ?></td>
 							<td class="text-center">
-								
-								<input type="number" name="<?= $pokemon['id'] ?>" min="0" max="10" value="<?= $pokemon['in_cart'] ?>"/>
-							</form>
+								<input type="number" name="<?= $pokemon['id'] ?>" min="1" max="10" value="<?= $pokemon['in_cart'] ?>"/>
+								<button class="btn btn-sm btn-danger" pokemon="<?= $pokemon['id'] ?>">remove</button>
 							</td>
 							<td class="text-center total"><?php echo (+$pokemon['price']) * (+$pokemon['in_cart']) ?></td>
 						</tr>
 			<?php } ?>
 					</tbody>
 				</table>  
-	       		
 				<button class="btn btn-success pull-right" type="submit">Update Cart</button>
 			</form>
 		</div>
