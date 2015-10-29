@@ -11,7 +11,7 @@
 	$(document).ready(function(){
 		$.get("/customers/all_pokemon", function(pokemon){
 			console.log(pokemon);
-			var pages = (pokemon.length / 70);
+			var pages = Math.ceil(pokemon.length / 70);
 			var html_str2 = ""
 			for (var i = 1; i <= pages; i++){
 				html_str2 += "<li class='pageno' id='"+i+"'>"+i+"</a></li>";
