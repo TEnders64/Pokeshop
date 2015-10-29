@@ -1,35 +1,66 @@
 <html>
 <head>
-	<title>Shopping Cart</title>
+	<title>PokeCart</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	 $(document).ready(function(){
+
+	 	var total = 0;
+	 	$('.total').each(function(){
+	 		total += parseInt($(this).html());
+	 	});
+	 	$('#total').html('Total: $'+total);
+
+	 })
+	</script><!-- end script -->
 </head>
 <body>
-	<h3>Your Cart</h3>
-	<table>
-		<thead>
-			<tr>
-				<th>Item</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Total</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Pikachu</td>
-				<td>$299.99</td>
-				<td>1</td>
-				<td>$299.99</td>
-			</tr>
-			<tr>
-				<td>Charmander</td>
-				<td>$249.99</td>
-				<td>2</td>
-				<td>$499.98</td>
-			</tr>
-		</tbody>
-	</table>
-	<h5>Total: $799.97</h5>
-	<a href=""><button>Continue Shopping</button></a>
+<?php $this->load->view('partials/customer_header') ?>
+	<div class="container">
+		<div class="row">
+			<h3 class="col-md-2">Your Cart</h3>
+			<a href="" class="col-md-2 col-md-offset-8"><button class="btn btn-info pull-right">Continue Shopping</button></a>
+			<table class="table table-striped table-hover table-condensed">
+				<thead>
+					<tr>
+						<th class="text-center">Item</th>
+						<th class="text-center">Price</th>
+						<th class="text-center">Quantity</th>
+						<th class="text-center">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+
+			<?php $items = $this->session->userdata("cart"); 
+					var_dump($items);
+					foreach ($items as $item){ 
+						?>
+					<tr>
+						<td class="text-center"><?= $item['name'] ?></td>
+						<td class="text-center"><?= $item['price'] ?></td>
+						<td class="text-center"><?= $item['in_cart'] ?>  <a href="#">Delete</a></td>
+						<td class="text-center total"><?php echo (+$item['price']) * (+$item['in_cart']) ?></td>
+					</tr>
+			<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	<div class="row">
+		<a href="/customers/edit_cart"><button class="btn btn-warning pull-right">Edit Cart</button></a>
+	</div>
+	<div class="row">
+		<div class="pull-right">
+			<h5 id="total"></h5>
+		</div>
+	</div>
 	<h3>Shipping Information</h3>
 	<form action="" method="post">
 		<p>First Name: <input type="text" name="first_name" /></p>
@@ -67,5 +98,6 @@
 		</select></p>
 	</form>
 	<a href=""><button>Pay</button></a>
+</div>
 </body>
 </html>

@@ -25,7 +25,7 @@
 			<h1><?=$pokemon['name']?></h1>
             <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
 				</div>
-				<div class="col-md-6"
+				<div class="col-md-6">
 				<h1>Description:</h1>
 				<p><?=$pokemon['description']?></p>
 				<p>Height: <?=$pokemon['height']?></p>
@@ -37,11 +37,16 @@
 				<p>Abilities: <?=$pokemon['abilities']?></p>
 				<p>Type: <?=$pokemon['types']?></p>
 				<p>Price: $<?=$pokemon['price']?></p>
-			<form>
-				<input type="hidden">
-				<input type="number" name="quantity" min="1" max="10">
-				<input type="submit" value="BUY">
-			</form>
+				<form class="form-inline col-md-4" action="/customers/add_to_cart" method="post">
+				  <input type="hidden" name="id" value="<?= $pokemon['id'] ?>"/>
+				  <div class="form-group">
+				    <label class="sr-only" for="buy">Buy</label>
+				    <div class="input-group">
+				      <input type="number" name="quantity" class="form-control" id="buy" min="1" max="10">
+				    </div>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Buy</button>
+				</form>
 				</div>						
 			</div>
 		</div> 

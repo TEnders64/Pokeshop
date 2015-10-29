@@ -4,6 +4,7 @@ class Customers extends CI_Controller {
 
 	public function index()
 	{
+		//$this->session->sess_destroy();
 		$this->load->view('productspage');
 	}
 	
@@ -23,9 +24,55 @@ class Customers extends CI_Controller {
 			"similars" => $similars
 			));
 	}
+
 	public function add_to_cart(){
+
+		if ($this->session->userdata("cart")){
+			$items = $this->session->userdata("cart");
 		
+			$items[$this->input->post('id')] = $this->input->post('quantity');
+
+		 	$this->session->set_userdata("cart", $items);
+
+
+		}else{
+
+			$this->session->set_userdata("cart", array($this->input->post('id') => $this->input->post('quantity')));
+
+		}
+		 	redirect("/customers");
 	}
+
+	public function showcart(){
+		if ($this->session->userdata("cart")){
+			$items = $this->session->userdata("cart");
+			$cart = array();
+			foreach ($items as $item => $quantity){
+				$pokemon = $this->customer->one_pokemon($item);
+				$pokemon['in_cart'] = $quantity;
+				$cart[] = $pokemon;
+			}
+			$this->session->set_userdata("cart", $cart);
+			var_dump($this->session->userdata);
+			die();
+
+			$this->load->view('checkout');
+
+		}else{
+			redirect("customers");
+		}
+
+	}
+
+	public function edit_cart(){
+		$this->load->view("edit_cart");
+	}
+
+	public function update_cart(){
+		// var_dump($this->input->post());
+		// die();
+	}
+
 	public function all_pokemon(){		
 		echo json_encode($this->customer->all_pokemon($this->input->get()));
 	}
