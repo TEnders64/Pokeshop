@@ -57,24 +57,55 @@
 			<h5 id="total"></h5>
 		</div>
 	</div>
-	
+<div class="col-md-10 col-md-offset-1"></div>
+<div class="row">
+	<div class="col-md-4 col-md-offset-1">		
 	<h3>Billing Information</h3>
 	<form action="" method="post">
-		<p>First Name: <input type="text" name="first_name" /></p>
-		<p>Last Name: <input type="text" name="last_name" /></p>
-		<p>Address: <input type="text" name="address1" /></p>
-		<p>Address2: <input type="text" name="address2" /></p>
-		<p>City: <input type="text" name="city" /></p>
-		<p>State: <input type="text" name="state" /></p>
-		<p>Zip: <input type="number" name="zip" min="00000" max="99999"/></p><br>
-		<p>Card Number: <input type="text" name="CC_num" /></p>
-		<p>Security Code: <input type="text" name="CCV" /></p>
-		<p>Expiration: <select name="month">
+		<div class="form-group">
+			<label for="first_name">First Name</label>
+			<input type="text" name="first_name" /></p>
+		</div>
+		<div class="form-group">
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" /></p>
+		</div>
+		<div class="form-group">
+			<label for="address1">Address: </label>
+			<input type="text" name="address1" /></p>
+		</div>
+		<div class="form-group">
+			<label for="address2">Address 2: </label>
+			<input type="text" name="address2" /></p>
+		</div>
+		<div class="form-group">
+			<label for="city">City: </label>
+			<input type="text" name="city" /></p>
+		</div>
+		<div class="form-group">
+			<label for="state">State: </label>
+			<input type="text" name="state" /></p>
+		</div>
+		<div class="form-group">
+			<label for="zip">Zip: </label>
+			<input type="number" name="zip" min="00000" max="99999"/></p>
+		</div>
+		<div class="form-group">
+			<label for="CC_num">Card Number: </label>
+			<input type="text" name="CC_num" /></p>
+		</div>
+		<div class="form-group">
+			<label for="CCV">Security Code: </label>
+			<input type="text" name="CCV" /></p>
+		</div>
+		<div class="form-group">
+			<label for="month"> Expiration: </label>
+			<select name="month">
 <?php 		for ($i = 1; $i<=12; $i++){?>
 							<option value="<?= $i ?>"/><?= $i ?></option>
 <?php 		}?>
 						</select>
-		<select name="year">
+			<select name="year">
 			<option value="2015">2015</option>
 			<option value="2016">2016</option>
 			<option value="2017">2017</option>
@@ -82,19 +113,52 @@
 			<option value="2019">2019</option>
 			<option value="2020">2020</option>
 		</select></p>
+		</div>
 	</form>
+	</div>
+	<div class="col-md-4 col-md-offset-1">	
 	<h3>Shipping Information</h3>
 	<form action="" method="post">
+		<div class="form-group">
 		<p><input type="checkbox" name="same_as_billing" /> Same as Billing</p>
-		<p>First Name: <input type="text" name="first_name" /></p>
-		<p>Last Name: <input type="text" name="last_name" /></p>
-		<p>Address: <input type="text" name="address1" /></p>
-		<p>Address2:<input type="text" name="address2" /></p>
-		<p>City: <input type="text" name="city" /></p>
-		<p>State: <input type="text" name="state" /></p>
-		<p>Zip: <input type="number" name="zip" min="00000" max="99999"/></p>
+		</div>
+		<div class="form-group">
+			<label for="first_name">First Name</label>
+			<input type="text" name="first_name" /></p>
+		</div>
+		<div class="form-group">
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" /></p>
+		</div>
+		<div class="form-group">
+			<label for="address1">Address: </label>
+			<input type="text" name="address1" /></p>
+		</div>
+		<div class="form-group">
+			<label for="address2">Address 2: </label>
+			<input type="text" name="address2" /></p>
+		</div>
+		<div class="form-group">
+			<label for="city">City: </label>
+			<input type="text" name="city" /></p>
+		</div>
+		<div class="form-group">
+			<label for="state">State: </label>
+			<input type="text" name="state" /></p>
+		</div>
+		<div class="form-group">
+			<label for="zip">Zip: </label>
+			<input type="number" name="zip" min="00000" max="99999"/></p>
+		</div>
 	</form>
-		<a href=""><button>Pay</button></a>
+	</div>
+	</div>
+		<div class="row">
+		<a class="col-md-4 col-md-offset-5"href=""><button class="btn btn-success pull-right">Pay</button></a>
+		</div>
+	</div>
+	</div>
+</div>
 </div>
 </body>
 </html>
