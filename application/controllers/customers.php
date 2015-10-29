@@ -43,25 +43,30 @@ class Customers extends CI_Controller {
 		 	redirect("/customers");
 	}
 
-	public function showcart(){
+	public function loadcart(){
 		if ($this->session->userdata("cart")){
 			$items = $this->session->userdata("cart");
+
 			$cart = array();
 			foreach ($items as $item => $quantity){
 				$pokemon = $this->customer->one_pokemon($item);
 				$pokemon['in_cart'] = $quantity;
+
 				$cart[] = $pokemon;
 			}
-			$this->session->set_userdata("cart", $cart);
-			var_dump($this->session->userdata);
-			die();
 
-			$this->load->view('checkout');
+			$this->session->set_userdata("cart", $cart);
+
+			redirect("/customers/checkout");
 
 		}else{
-			redirect("customers");
+			redirect("/customers");
 		}
 
+	}
+
+	public function checkout(){
+		$this->load->view('checkout');
 	}
 
 	public function edit_cart(){
@@ -69,8 +74,11 @@ class Customers extends CI_Controller {
 	}
 
 	public function update_cart(){
-		// var_dump($this->input->post());
-		// die();
+		var_dump($this->input->post());
+		die();
+		// if ($this->input->post()){
+		// 	$this->input->post()
+		// }
 	}
 
 	public function all_pokemon(){		

@@ -38,18 +38,15 @@
 					</tr>
 				</thead>
 				<tbody>
-
-			<?php $items = $this->session->userdata("cart"); 
-					var_dump($items);
-					foreach ($items as $item){ 
-						?>
+<?php $pokemons = $this->session->userdata("cart"); 
+				foreach ($pokemons as $pokemon) {?>
 					<tr>
-						<td class="text-center"><?= $item['name'] ?></td>
-						<td class="text-center"><?= $item['price'] ?></td>
-						<td class="text-center"><?= $item['in_cart'] ?>  <a href="#">Delete</a></td>
-						<td class="text-center total"><?php echo (+$item['price']) * (+$item['in_cart']) ?></td>
+						<td class="text-center"><?= $pokemon['name'] ?></td>
+						<td class="text-center"><?= $pokemon['price'] ?></td>
+						<td class="text-center"><?= $pokemon['in_cart'] ?> <a href="#">Delete</a></td>
+						<td class="text-center total"><?= (+$pokemon['price']) * (+$pokemon['in_cart']) ?></td>
 					</tr>
-			<?php } ?>
+<?php } ?>
 				</tbody>
 			</table>
 		</div>
