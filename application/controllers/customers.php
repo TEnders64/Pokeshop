@@ -58,7 +58,7 @@ class Customers extends CI_Controller {
 			// var_dump($cart);
 			// die();
 
-			$this->load->view('checkout', array("cart" => $cart));
+			$this->load->view('edit_cart', array("cart" => $cart));
 		}else{
 			redirect("/customers");
 		}
@@ -69,8 +69,7 @@ class Customers extends CI_Controller {
 
 		if ($this->session->userdata("cart")){
 			$ids = $this->session->userdata("cart");
-			// var_dump($ids);
-			// die();
+
 			$cart = array();
 			foreach ($ids as $id => $quantity){
 				$pokemon = $this->customer->one_pokemon($id);
@@ -78,8 +77,6 @@ class Customers extends CI_Controller {
 
 				$cart[] = $pokemon;
 			}
-			// var_dump($cart);
-			// die();
 
 			$this->load->view('edit_cart', array("cart" => $cart));
 		}
@@ -100,8 +97,43 @@ class Customers extends CI_Controller {
 		redirect("/customers/loadcart");
 	}
 
+	public function checkout(){
+		if ($this->session->userdata("cart")){
+			$ids = $this->session->userdata("cart");
+
+			$cart = array();
+			foreach ($ids as $id => $quantity){
+				$pokemon = $this->customer->one_pokemon($id);
+				$pokemon['in_cart'] = $quantity;
+
+				$cart[] = $pokemon;
+			}
+
+			$this->load->view('checkout', array("cart" => $cart));
+		}
+	}
+
 	public function all_pokemon(){		
 		echo json_encode($this->customer->all_pokemon($this->input->get()));
+	}
+
+	public function login(){
+		$this->load->view('customer_login');
+	}
+
+	public function validate_login(){
+		$result = $this->customer->login($this->input->post());
+		if ($result){
+			redirect("/customers/checkout");
+		}else{
+			redirect("/customers/login");
+		}
+	}
+
+	public function validate_registration(){
+		$this->customer->register($this->input->post());
+		
+		redirect("/customers/login");
 	}
 }
 ?>

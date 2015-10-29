@@ -28,7 +28,8 @@
 <?php $this->load->view('partials/customer_header') ?>
 	<div class="container">
 		<div class="row">
-			<h3>Update your cart!</h3>
+			<h3 class="col-md-3">Your PokeCart!</h3>
+			<a href="/customers" class="col-md-2 col-md-offset-7"><button class="btn btn-info pull-right">Continue Shopping</button></a>
 			<form class="form-horizontal" action="/customers/update_cart" method="post">
 				<table class="table table-striped table-hover table-condensed">
 					<thead>
@@ -46,14 +47,16 @@
 							<td class="text-center"><?= $pokemon['price'] ?></td>
 							<td class="text-center">
 								<input type="number" name="<?= $pokemon['id'] ?>" min="1" max="10" value="<?= $pokemon['in_cart'] ?>"/>
-								<button class="btn btn-sm btn-danger" pokemon="<?= $pokemon['id'] ?>">remove</button>
+								<button type="button" class="btn btn-sm btn-danger" pokemon="<?= $pokemon['id'] ?>">remove</button>
 							</td>
 							<td class="text-center total"><?php echo (+$pokemon['price']) * (+$pokemon['in_cart']) ?></td>
 						</tr>
 			<?php } ?>
 					</tbody>
 				</table>  
-				<button class="btn btn-success pull-right" type="submit">Update Cart</button>
+				<a href="/customers/login"><button type="button" class="btn btn-success pull-right">Checkout</button></a>
+				<button class="btn btn-warning pull-right" type="submit">Update Cart</button>
+				
 			</form>
 		</div>
 	</div>
