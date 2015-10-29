@@ -27,7 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<h3 class="col-md-2">Your Cart</h3>
-			<a href="" class="col-md-2 col-md-offset-8"><button class="btn btn-info pull-right">Continue Shopping</button></a>
+			<a href="/customers" class="col-md-2 col-md-offset-8"><button class="btn btn-info pull-right">Continue Shopping</button></a>
 			<table class="table table-striped table-hover table-condensed">
 				<thead>
 					<tr>
@@ -38,12 +38,11 @@
 					</tr>
 				</thead>
 				<tbody>
-<?php $pokemons = $this->session->userdata("cart"); 
-				foreach ($pokemons as $pokemon) {?>
+<?php			foreach ($cart as $pokemon) {?>
 					<tr>
 						<td class="text-center"><?= $pokemon['name'] ?></td>
 						<td class="text-center"><?= $pokemon['price'] ?></td>
-						<td class="text-center"><?= $pokemon['in_cart'] ?> <a href="#">Delete</a></td>
+						<td class="text-center"><?= $pokemon['in_cart'] ?></td>
 						<td class="text-center total"><?= (+$pokemon['price']) * (+$pokemon['in_cart']) ?></td>
 					</tr>
 <?php } ?>
@@ -58,19 +57,9 @@
 			<h5 id="total"></h5>
 		</div>
 	</div>
-	<h3>Shipping Information</h3>
-	<form action="" method="post">
-		<p>First Name: <input type="text" name="first_name" /></p>
-		<p>Last Name: <input type="text" name="last_name" /></p>
-		<p>Address: <input type="text" name="address1" /></p>
-		<p>Address2:<input type="text" name="address2" /></p>
-		<p>City: <input type="text" name="city" /></p>
-		<p>State: <input type="text" name="state" /></p>
-		<p>Zip: <input type="number" name="zip" min="00000" max="99999"/></p>
-	</form>
+	
 	<h3>Billing Information</h3>
 	<form action="" method="post">
-		<p><input type="checkbox" name="same_as_shipping" /> Same as Shipping</p>
 		<p>First Name: <input type="text" name="first_name" /></p>
 		<p>Last Name: <input type="text" name="last_name" /></p>
 		<p>Address: <input type="text" name="address1" /></p>
@@ -94,7 +83,18 @@
 			<option value="2020">2020</option>
 		</select></p>
 	</form>
-	<a href=""><button>Pay</button></a>
+	<h3>Shipping Information</h3>
+	<form action="" method="post">
+		<p><input type="checkbox" name="same_as_billing" /> Same as Billing</p>
+		<p>First Name: <input type="text" name="first_name" /></p>
+		<p>Last Name: <input type="text" name="last_name" /></p>
+		<p>Address: <input type="text" name="address1" /></p>
+		<p>Address2:<input type="text" name="address2" /></p>
+		<p>City: <input type="text" name="city" /></p>
+		<p>State: <input type="text" name="state" /></p>
+		<p>Zip: <input type="number" name="zip" min="00000" max="99999"/></p>
+	</form>
+		<a href=""><button>Pay</button></a>
 </div>
 </body>
 </html>

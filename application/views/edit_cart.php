@@ -38,20 +38,18 @@
 						</tr>
 					</thead>
 					<tbody>
-			<?php $items = $this->session->userdata("cart");
-					$index = 0; 
-					foreach ($items as $item){ ?>
+			<?php  	foreach ($cart as $pokemon){ ?>
 						<tr>
-							<td class="text-center"><?= $item['name'] ?></td>
-							<td class="text-center"><?= $item['price'] ?></td>
+							<td class="text-center"><?= $pokemon['name'] ?></td>
+							<td class="text-center"><?= $pokemon['price'] ?></td>
 							<td class="text-center">
-								<input type="hidden" name="<?= $index ?>" value="<?= $item['id'] ?>"/>
-								<input type="number" name="qty<?= $index ?>" min="0" max="10" value="<?= $item['in_cart'] ?>"/>
+								
+								<input type="number" name="<?= $pokemon['id'] ?>" min="0" max="10" value="<?= $pokemon['in_cart'] ?>"/>
 							</form>
 							</td>
-							<td class="text-center total"><?php echo (+$item['price']) * (+$item['in_cart']) ?></td>
+							<td class="text-center total"><?php echo (+$pokemon['price']) * (+$pokemon['in_cart']) ?></td>
 						</tr>
-			<?php $index++; } ?>
+			<?php } ?>
 					</tbody>
 				</table>  
 	       		

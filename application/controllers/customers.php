@@ -45,40 +45,63 @@ class Customers extends CI_Controller {
 
 	public function loadcart(){
 		if ($this->session->userdata("cart")){
-			$items = $this->session->userdata("cart");
-
+			$ids = $this->session->userdata("cart");
+			// var_dump($ids);
+			// die();
 			$cart = array();
-			foreach ($items as $item => $quantity){
-				$pokemon = $this->customer->one_pokemon($item);
+			foreach ($ids as $id => $quantity){
+				$pokemon = $this->customer->one_pokemon($id);
 				$pokemon['in_cart'] = $quantity;
 
 				$cart[] = $pokemon;
 			}
+			// var_dump($cart);
+			// die();
 
-			$this->session->set_userdata("cart", $cart);
-
-			redirect("/customers/checkout");
-
+			$this->load->view('checkout', array("cart" => $cart));
 		}else{
 			redirect("/customers");
 		}
 
 	}
 
-	public function checkout(){
-		$this->load->view('checkout');
-	}
-
 	public function edit_cart(){
-		$this->load->view("edit_cart");
+
+		if ($this->session->userdata("cart")){
+			$ids = $this->session->userdata("cart");
+			// var_dump($ids);
+			// die();
+			$cart = array();
+			foreach ($ids as $id => $quantity){
+				$pokemon = $this->customer->one_pokemon($id);
+				$pokemon['in_cart'] = $quantity;
+
+				$cart[] = $pokemon;
+			}
+			// var_dump($cart);
+			// die();
+
+			$this->load->view('edit_cart', array("cart" => $cart));
+		}
+
 	}
 
 	public function update_cart(){
-		var_dump($this->input->post());
-		die();
-		// if ($this->input->post()){
-		// 	$this->input->post()
-		// }
+		// var_dump($this->input->post());
+		// die();
+
+		// var_dump($this->input->post());
+		$cart = $this->session->userdata('cart');
+
+		foreach ($this->input->post() as $id => $quantity){
+			$cart[$id] = $quantity;
+			// $this->session->set_userdata('cart'[$id] => $quantity);
+
+		}
+		// var_dump($cart);
+		// die();
+		$this->session->set_userdata('cart', $cart);
+		redirect("/customers/loadcart");
 	}
 
 	public function all_pokemon(){		
