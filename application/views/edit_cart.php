@@ -21,15 +21,17 @@
 
 	 	$('td>button').on('click',function(){
 	 		$('#update').fadeIn('slow');
-	 	});
+ 		});
 
 	 	$('table').on('click','button',function(){
 	 		var id = $(this).attr('pokemon');
-	 		console.log(id);
+
 	 		$('#'+id).remove();
 
 	 		return false;
 	 	});
+
+
 
 	 	$('h5').css('color','green').fadeOut(3000);
 

@@ -8,7 +8,7 @@ class Customer extends CI_Model {
 		$this->form_validation->set_rules("last_name", "Billing Last Name", "required|alpha");
 		$this->form_validation->set_rules("email", "Billing Email", "required|valid_email]");
 		$this->form_validation->set_rules("address1", "Billing Address 1", "required");
-		$this->form_validation->set_rules("address2", "Billing Address 2", "required");
+		$this->form_validation->set_rules("address2", "Billing Address 2", "alpha_numeric");
 		$this->form_validation->set_rules("city", "Billing City", "required|alpha");
 		$this->form_validation->set_rules("state", "Billing State", "required|alpha|exact_length[2]");
 		$this->form_validation->set_rules("zip", "Billing Zip", "required|numeric");
@@ -18,9 +18,8 @@ class Customer extends CI_Model {
 
 		$this->form_validation->set_rules("first_name_s", "Shipping First Name", "required|alpha");
 		$this->form_validation->set_rules("last_name_s", "Shipping Last Name", "required|alpha");
-		$this->form_validation->set_rules("email_s", "Shipping Email", "required|valid_email]");
 		$this->form_validation->set_rules("address1_s", "Shipping Address 1", "required");
-		$this->form_validation->set_rules("address2_s", "Shipping Address 2", "required");
+		$this->form_validation->set_rules("address2_s", "Shipping Address 2", "alpha_numeric");
 		$this->form_validation->set_rules("city_s", "Shipping City", "required|alpha");
 		$this->form_validation->set_rules("state_s", "Shipping State", "required|alpha|exact_length[2]");
 		$this->form_validation->set_rules("zip_s", "Shipping Zip", "required|numeric");

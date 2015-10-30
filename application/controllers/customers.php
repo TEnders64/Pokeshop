@@ -45,7 +45,8 @@ class Customers extends CI_Controller {
 			$this->session->set_userdata("cart", array($this->input->post('id') => $this->input->post('quantity')));
 
 		}
-		 	redirect("/customers/show/".$id);
+		 	//redirect("/customers/show/".$id);
+		 	redirect("/");
 	}
 
 	public function loadcart(){
@@ -90,16 +91,20 @@ class Customers extends CI_Controller {
 
 	public function update_cart(){
 
-		$cart = array();
+		if ($this->input->post()){
+			$cart = array();
+			foreach ($this->input->post() as $id => $quantity){
+				$cart[$id] = $quantity;
 
-		foreach ($this->input->post() as $id => $quantity){
-			$cart[$id] = $quantity;
+			}
+			$this->session->set_flashdata('success', '<h5 class="text-center">Cart Updated Successfully!</h5>');
+			$this->session->set_userdata('cart', $cart);
 
+			redirect("/customers/loadcart");
+		}else{
+			$this->session->set_userdata('cart', array());
+			redirect("/");
 		}
-		$this->session->set_flashdata('success', '<h5 class="text-center">Cart Updated Successfully!</h5>');
-		$this->session->set_userdata('cart', $cart);
-
-		redirect("/customers/loadcart");
 	}
 
 	public function checkout(){
@@ -120,6 +125,7 @@ class Customers extends CI_Controller {
 
 	public function process(){
 		if($this->customer->process($this->input->post())){
+			$this->session->sess_destroy();
 			$this->load->view('success');
 		}else{
 			redirect('/customers/checkout');
