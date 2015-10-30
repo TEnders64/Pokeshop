@@ -118,6 +118,14 @@ class Customers extends CI_Controller {
 		}
 	}
 
+	public function process(){
+		if($this->customer->process($this->input->post())){
+			$this->load->view('success');
+		}else{
+			redirect('/customers/checkout');
+		}
+	}
+
 	public function all_pokemon(){		
 		echo json_encode($this->customer->all_pokemon($this->input->get()));
 	}
@@ -126,34 +134,6 @@ class Customers extends CI_Controller {
 		// die();
 		echo json_encode($this->customer->types_of_pokemon($post));
 	}
-
-	// public function login(){
-	// 	if ($this->session->userdata('customer_id')){
-	// 		redirect('/customers/checkout');
-	// 	}else{
-	// 		$this->load->view('customer_login');
-	// 	}
-	// }
-
-	// public function validate_login(){
-	// 	$result = $this->customer->login($this->input->post());
-	// 	if ($result){
-	// 		redirect("/customers/checkout");
-	// 	}else{
-	// 		redirect("/customers/login");
-	// 	}
-	// }
-
-	// public function validate_registration(){
-	// 	$this->customer->register($this->input->post());
-		
-	// 	redirect("/customers/login");
-	// }
-
-	// public function logout(){
-	// 	$this->session->sess_destroy();
-	// 	redirect("/customers");
-	// }
 	// i give up...
 	public function types_of_pokemon_normal(){
 	

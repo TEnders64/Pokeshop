@@ -18,7 +18,7 @@
 	</script>
 </head>
 <body>
-<?php $this->load->view('partials/customer_header'); ?>
+<?php $this->load->view('partials/admin_header'); ?>
 	<div class="container">
 		<div class="row">
 		<div class="col-md-3 col-md-offset-6">

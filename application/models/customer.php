@@ -1,76 +1,65 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Customer extends CI_Model {
+	public function process($post){
+		// var_dump($post);
+		// die();
+		$this->form_validation->set_rules("first_name", "Billing First Name", "required|alpha");
+		$this->form_validation->set_rules("last_name", "Billing Last Name", "required|alpha");
+		$this->form_validation->set_rules("email", "Billing Email", "required|valid_email]");
+		$this->form_validation->set_rules("address1", "Billing Address 1", "required");
+		$this->form_validation->set_rules("address2", "Billing Address 2", "required");
+		$this->form_validation->set_rules("city", "Billing City", "required|alpha");
+		$this->form_validation->set_rules("state", "Billing State", "required|alpha|exact_length[2]");
+		$this->form_validation->set_rules("zip", "Billing Zip", "required|numeric");
+		$this->form_validation->set_rules("CC_num", "Credit Card Number", "required|numeric|min_length[15]|max_length[19]");
+		$this->form_validation->set_rules("month", "Billing Month", "required");
+		$this->form_validation->set_rules("year", "Billing Year", "required");
 
-	// public function register($post){
-	// 	// var_dump($post);
-	// 	// die();
-	// 	$this->form_validation->set_rules("first_name", "First Name", "required|alpha");
-	// 	$this->form_validation->set_rules("last_name", "Last Name", "required|alpha");
-	// 	$this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[customers.email]");
-	// 	$this->form_validation->set_rules("password", "Password", "min_length[8]|required");
-	// 	$this->form_validation->set_rules("c_password", "Confirm", "matches[password]|required");
-	// 	$this->form_validation->set_rules("address1","Address", "required");
-	// 	$this->form_validation->set_rules("address2","Address2", "alpha_numeric");
-	// 	$this->form_validation->set_rules("city","City", "alpha|required");
-	// 	$this->form_validation->set_rules("state","State", "alpha|required|exact_length[2]");
-	// 	$this->form_validation->set_rules("zip","Zip Code", "numeric|required|exact_length[5]");
+		$this->form_validation->set_rules("first_name_s", "Shipping First Name", "required|alpha");
+		$this->form_validation->set_rules("last_name_s", "Shipping Last Name", "required|alpha");
+		$this->form_validation->set_rules("email_s", "Shipping Email", "required|valid_email]");
+		$this->form_validation->set_rules("address1_s", "Shipping Address 1", "required");
+		$this->form_validation->set_rules("address2_s", "Shipping Address 2", "required");
+		$this->form_validation->set_rules("city_s", "Shipping City", "required|alpha");
+		$this->form_validation->set_rules("state_s", "Shipping State", "required|alpha|exact_length[2]");
+		$this->form_validation->set_rules("zip_s", "Shipping Zip", "required|numeric");
 
-	// 	if($this->form_validation->run() === FALSE)
-	// 	{
-	// 	    $this->session->set_flashdata("reg_errors", validation_errors());
-	// 	    return false;
-	// 	}
-	// 	else
-	// 	{
-	// 		$query = "INSERT INTO customers (first_name, last_name, email, password, created_at, updated_at)
-	// 		 		VALUES (?,?,?,?, NOW(),NOW())";
-	// 		$values = array($post['first_name'], $post['last_name'], $post['email'], $post['password']);
+		if($this->form_validation->run() === false){
+			$this->session->set_flashdata("errors", validation_errors());
+			return false;
+		}
+		else{
+			$query_ship = "INSERT INTO shipping (first_name, last_name, address1, address2, city, state, zip, created_at, updated_at) 
+					VALUES (?,?,?,?,?,?,?, NOW(), NOW())";
+			$values_ship = array($post['first_name_s'], $post['last_name_s'], $post['address1_s'], $post['address2_s'], $post['city_s'], $post['state_s'], $post['zip_s']);
 
-	// 		$this->db->query($query, $values);
+			$this->db->query($query_ship, $values_ship);
+			$address_id = $this->db->insert_id();
+			
+			$query_order = "INSERT INTO orders (address_id, email, created_at, updated_at) VALUES (?,?, NOW(), NOW())";
+			$values_order = array($address_id, $post['email']);
+			
+			$this->db->query($query_order, $values_order);
+			$order_id = $this->db->insert_id();
 
-	// 		$query2 = "INSERT INTO addresses (first_name, last_name, address1, address2, city, state, zip, created_at, updated_at)
-	// 				  VALUES (?,?,?,?,?,?,?, NOW(), NOW())";
-	// 		$values2 = array($post['first_name'], $post['last_name'], $post['address1'], $post['address2'], $post['city'], $post['state'], $post['zip']);
+			$cart = $this->session->userdata('cart');
+			foreach ($cart as $id => $quantity){
+				$query_order_items = "INSERT INTO order_items (order_id, item_id, quantity, created_at, updated_at) VALUES (?,?,?, NOW(), NOW())";
+				$values_order_items = array($order_id, $id, $quantity);
+				$this->db->query($query_order_items, $values_order_items);
 
-	// 		$this->db->query($query2, $values2);
-
-	// 		$this->session->set_flashdata("success","<h5 class='text-center' style='color:green'>Registration Successful, Please Log In</h5>");
-	// 		return true;
-	// 	}
-	// }
-
-	// public function login($post){
-	// 	// var_dump($post);
-	// 	// die();
-	// 	$this->form_validation->set_rules("email", "Email", "required");
-	// 	$this->form_validation->set_rules("password", "password", "required");
-	// 	if($this->form_validation->run() === FALSE)
-	// 	{
-	// 	    $this->session->set_flashdata("login_errors", validation_errors());
-	// 	    return false;
-	// 	}
-	// 	else
-	// 	{
-	// 		$query = "SELECT id, first_name FROM customers WHERE email = ? AND password = ?";
-	// 		$values = array($post['email'], $post['password']);
-
-	// 		$customer = $this->db->query($query,$values)->row_array();
-	// 		if ($customer){
-	// 			$this->session->set_userdata("customer_id", $customer['id']);
-	// 			$this->session->set_userdata("name", $customer['first_name']);
-	// 			return true;
-	// 		}else{
-	// 			$this->session->set_flashdata("login_errors","Incorrect credentials");
-	// 			return false;
-	// 		}
-	// 	}
-	// }
+				$query_pokemons = "UPDATE pokemons SET quantity = (quantity - ?), sold = (sold + ?) WHERE id = ? ";
+				$values_pokemons = array($quantity, $quantity, $id);
+				$this->db->query($query_pokemons,$values_pokemons);
+			}
+			return true;
+		}
+	}
 
 	public function all_pokemon(){
 		$query = "SELECT * FROM pokemons";
 		return $this->db->query($query)->result_array();
-
 	}
 	
 	public function one_pokemon($pokemon_id){
@@ -92,9 +81,8 @@ class Customer extends CI_Model {
 		$query = "SELECT id FROM pokemons WHERE types LIKE ?";
 		$values = '%' . $this_type[count($this_type)-2] . '%';
 		return $this->db->query($query,$values)->result_array();
-
-		
 	}
+
 	public function types_of_pokemon_normal(){
 			$query = "SELECT id , name FROM pokemons WHERE types LIKE '%normal%'";
 			return $this->db->query($query)->result_array();

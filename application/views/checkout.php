@@ -58,106 +58,109 @@
 			<h5 id="total"></h5>
 		</div>
 	</div>
-<div class="col-md-10 col-md-offset-1"></div>
-<div class="row">
-	<div class="col-md-4 col-md-offset-1">		
-	<h3>Billing Information</h3>
-	<form action="" method="post">
-		<div class="form-group text-right">
-			<label for="first_name">First Name</label>
-			<input type="text" name="first_name" /></p>
+	<div class="row">
+		<div class="col-md-4">		
+			<h3 class="text-right">Billing Information</h3>
+			<form action="/customers/process" method="post">
+			<div class="form-group text-right">
+				<label for="email">Email</label>
+				<input type="email" name="email" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="first_name">First Name</label>
+				<input type="text" name="first_name" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="last_name">Last Name</label>
+				<input type="text" name="last_name" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="address1">Address: </label>
+				<input type="text" name="address1" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="address2">Address 2: </label>
+				<input type="text" name="address2" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="city">City: </label>
+				<input type="text" name="city" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="state">State: </label>
+				<input type="text" name="state" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="zip">Zip: </label>
+				<input type="number" name="zip" min="00000" max="99999"/></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="CC_num">Card Number: </label>
+				<input type="text" name="CC_num" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="CCV">Security Code: </label>
+				<input type="text" name="CCV" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="month"> Expiration: </label>
+				<select name="month">
+	<?php 		for ($i = 1; $i<=12; $i++){?>
+								<option value="<?= $i ?>"/><?= $i ?></option>
+	<?php 		}?>
+							</select>
+				<select name="year">
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
+				<option value="2017">2017</option>
+				<option value="2018">2018</option>
+				<option value="2019">2019</option>
+				<option value="2020">2020</option>
+			</select></p>
+			</div>
 		</div>
-		<div class="form-group text-right">
-			<label for="last_name">Last Name</label>
-			<input type="text" name="last_name" /></p>
+		<div class="col-md-4">	
+			<h3 class="text-right">Shipping Information</h3>
+			<div class="form-group">
+			<p class="text-right"><input type="checkbox" name="same_as_billing" /> Same as Billing</p>
+			</div>
+			<div class="form-group text-right">
+				<label for="first_name">First Name</label>
+				<input type="text" name="first_name_s" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="last_name">Last Name</label>
+				<input type="text" name="last_name_s" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="address1">Address: </label>
+				<input type="text" name="address1_s" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="address2">Address 2: </label>
+				<input type="text" name="address2_s" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="city">City: </label>
+				<input type="text" name="city_s" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="state">State: </label>
+				<input type="text" name="state_s" /></p>
+			</div>
+			<div class="form-group text-right">
+				<label for="zip">Zip: </label>
+				<input type="number" name="zip_s" min="00000" max="99999"/></p>
+			</div>
+			<div class="form-group text-right">
+				<button class="btn btn-success" type="submit">Pay</button>
+			</div>
 		</div>
-		<div class="form-group text-right">
-			<label for="address1">Address: </label>
-			<input type="text" name="address1" /></p>
+			</form>
+		<div class="col-md-4">
+			<?php if($this->session->flashdata('errors')){ echo '<div class="panel panel-warning">'. $this->session->flashdata('errors') .'</div>';} ?>
 		</div>
-		<div class="form-group text-right">
-			<label for="address2">Address 2: </label>
-			<input type="text" name="address2" /></p>
 		</div>
-		<div class="form-group text-right">
-			<label for="city">City: </label>
-			<input type="text" name="city" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="state">State: </label>
-			<input type="text" name="state" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="zip">Zip: </label>
-			<input type="number" name="zip" min="00000" max="99999"/></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="CC_num">Card Number: </label>
-			<input type="text" name="CC_num" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="CCV">Security Code: </label>
-			<input type="text" name="CCV" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="month"> Expiration: </label>
-			<select name="month">
-<?php 		for ($i = 1; $i<=12; $i++){?>
-							<option value="<?= $i ?>"/><?= $i ?></option>
-<?php 		}?>
-						</select>
-			<select name="year">
-			<option value="2015">2015</option>
-			<option value="2016">2016</option>
-			<option value="2017">2017</option>
-			<option value="2018">2018</option>
-			<option value="2019">2019</option>
-			<option value="2020">2020</option>
-		</select></p>
-		</div>
-	</form>
-	</div>
-	<div class="col-md-4 col-md-offset-1">	
-	<h3>Shipping Information</h3>
-	<form action="" method="post">
-		<div class="form-group">
-		<p><input type="checkbox" name="same_as_billing" /> Same as Billing</p>
-		</div>
-		<div class="form-group text-right">
-			<label for="first_name">First Name</label>
-			<input type="text" name="first_name" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="last_name">Last Name</label>
-			<input type="text" name="last_name" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="address1">Address: </label>
-			<input type="text" name="address1" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="address2">Address 2: </label>
-			<input type="text" name="address2" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="city">City: </label>
-			<input type="text" name="city" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="state">State: </label>
-			<input type="text" name="state" /></p>
-		</div>
-		<div class="form-group text-right">
-			<label for="zip">Zip: </label>
-			<input type="number" name="zip" min="00000" max="99999"/></p>
-		</div>
-	</form>
-	</div>
-	</div>
-		<div class="row">
-		<a class="col-md-4 col-md-offset-5"href=""><button class="btn btn-success pull-right">Pay</button></a>
-		</div>
-	</div>
 	</div>
 </div>
 </div>
