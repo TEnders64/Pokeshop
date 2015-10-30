@@ -30,7 +30,7 @@
         }
         ?>)
         </a></li>
-        <?php if ($this->session->userdata('customer_id')){echo '<li><a href="/customers/logout">Logout</a></li>';} ?>
+        <?php if ($this->session->userdata('customer_id')){echo '<li><a href="/customers/logout">Logout '.$this->session->userdata("name").'</a></li>';} ?>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

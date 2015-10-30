@@ -67,7 +67,7 @@
 					</tbody>
 				</table>  
 				<button class="btn btn-warning text-center col-md-4 col-md-offset-4" id="update" type="submit">Update Cart</button>
-				<a href="/customers/login"><button type="button" class="btn btn-success pull-right">Checkout</button></a>
+				<a href="/customers/checkout"><button type="button" class="btn btn-success pull-right">Checkout</button></a>
 				<?= $this->session->flashdata('success') ?>
 			</form>
 		</div>

@@ -83,7 +83,142 @@
 	</script>
 </head>
 <style type="text/css">
-
+	.icons{
+		/*width: 140px;
+		height: 150px;
+		max-width: 140px;
+		max-height: 150px;
+		margin: 5px;
+		background-color: #a0a5a7;
+		display: inline-table;*/
+	}
+	/*here starts the css after the pages work, earlier may need to be made to work with boot strap*/
+	.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #337ab7;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pagination > li:hover,
+.pagination > li > span:hover,
+.pagination > li:focus,
+.pagination > li > span:focus {
+  z-index: 3;
+  color: #23527c;
+  background-color: #eeeeee;
+  border-color: #dddddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #ffffff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777777;
+  background-color: #ffffff;
+  border-color: #dddddd;
+  cursor: not-allowed;
+}
+.pagination-lg > li,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.pagination-sm > li,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.tnail {
+  display: inline-block;
+  padding: 4px;
+  margin-bottom: 20px;
+  /*line-height: 1.42857143;*/
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: border 0.2s ease-in-out;
+  -o-transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out;
+}
+.tnail > img,
+.tnail a > img {
+  margin-left: auto;
+  margin-right: auto;'
+}
+a.tnail{
+	height: 150px;
+	width: 94px;
+}
+a.tnail:hover,
+a.tnail:focus,
+a.tnail.active {
+  border-color: #337ab7;
+}
+.tnail .caption {
+  padding: 9px;
+  color: #333333;
+}
 </style>
 <body id="body">
 <?php $this->load->view('partials/customer_header'); ?>
@@ -91,8 +226,8 @@
 <div class="row-fluid">
 
 <div id="types" class="span2">
-	<form>
-		<input type="text" placeholder="pok&eacute;mon name.">
+	<form action="/customers/search" name="search" method="post">
+		<input type="text" name="search" placeholder="pok&eacute;mon name.">
 		<input type="submit">
 	</form>
 	</br>
@@ -144,14 +279,19 @@
 </div>
 <div id="main_box" class="span2" style="margin-top:35px;">
 	<!-- have the type listed here followed by the page number -->
-	
+
 	<div>
 		  <ul class="pagination">
 		   
 		  </ul>
+
+		</nav>
+		<ul  id="pages_bar"></ul>
+
 		<!-- ul  id="pages_bar">
 			
 		</ul> -->
+
 	</div>
 	<div id="where_the_pokemon_go">
 		<!-- tems go here -->

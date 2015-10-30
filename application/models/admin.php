@@ -51,7 +51,6 @@ class Admin extends CI_Model {
 		$values = $pokemon_id;
 		return $this->db->query($query, $values)->row_array();
 	}
-
 	public function create($post){
 		$this->form_validation->set_rules("name", "name", "required");
 		$this->form_validation->set_rules("price", "price", "required");

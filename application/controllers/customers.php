@@ -4,7 +4,7 @@ class Customers extends CI_Controller {
 
 	public function index()
 	{
-		// $this->session->sess_destroy();
+		//$this->session->sess_destroy();
 		$this->load->view('productspage');
 	}
 	
@@ -25,15 +25,20 @@ class Customers extends CI_Controller {
 			));
 	}
 
-	public function add_to_cart(){
+	public function search(){
+		echo json_encode($this->customer->search_pokemon($this->input->post()));
+	}
 
+	public function add_to_cart(){
+		// var_dump($this->input->post());
+		// die();
+		$id = $this->input->post('id');
 		if ($this->session->userdata("cart")){
 			$items = $this->session->userdata("cart");
 		
 			$items[$this->input->post('id')] = $this->input->post('quantity');
 
 		 	$this->session->set_userdata("cart", $items);
-		 	$id = $this->input->post('id');
 
 		}else{
 
@@ -117,38 +122,38 @@ class Customers extends CI_Controller {
 		echo json_encode($this->customer->all_pokemon($this->input->get()));
 	}
 	public function types_of_pokemon($post){
-		echo $post;
-		die();
+		// echo $post;
+		// die();
 		echo json_encode($this->customer->types_of_pokemon($post));
 	}
 
-	public function login(){
-		if ($this->session->userdata('customer_id')){
-			redirect('/customers/checkout');
-		}else{
-			$this->load->view('customer_login');
-		}
-	}
+	// public function login(){
+	// 	if ($this->session->userdata('customer_id')){
+	// 		redirect('/customers/checkout');
+	// 	}else{
+	// 		$this->load->view('customer_login');
+	// 	}
+	// }
 
-	public function validate_login(){
-		$result = $this->customer->login($this->input->post());
-		if ($result){
-			redirect("/customers/checkout");
-		}else{
-			redirect("/customers/login");
-		}
-	}
+	// public function validate_login(){
+	// 	$result = $this->customer->login($this->input->post());
+	// 	if ($result){
+	// 		redirect("/customers/checkout");
+	// 	}else{
+	// 		redirect("/customers/login");
+	// 	}
+	// }
 
-	public function validate_registration(){
-		$this->customer->register($this->input->post());
+	// public function validate_registration(){
+	// 	$this->customer->register($this->input->post());
 		
-		redirect("/customers/login");
-	}
+	// 	redirect("/customers/login");
+	// }
 
-	public function logout(){
-		$this->session->sess_destroy();
-		redirect("/customers");
-	}
+	// public function logout(){
+	// 	$this->session->sess_destroy();
+	// 	redirect("/customers");
+	// }
 	// i give up...
 	public function types_of_pokemon_normal(){
 	
