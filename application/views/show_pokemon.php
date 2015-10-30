@@ -21,13 +21,6 @@
 
 	<script type="text/javascript">
 	 	var namechanged = <?php echo json_encode($pokemon);?>;
-	 	console.log(namechanged, 'HERE');
-	 	$(document).ready(function(){
-		 	// $('form').submit(function(){
-		 	// 	console.log(this);
-		 	// 	return false;
-		 	// });
-		});
 	</script>
 	
 <style type="text/css">
