@@ -48,19 +48,19 @@ var PokemonView = Backbone.View.extend({
 	//Used as a count of write locks for the animation bars
 	isDrawing: false,
 
-	search: function() {
-		var number = this.getInput();
-		var _this = this;
+	// search: function() {
+	// 	var number = this.getInput();
+	// 	var _this = this;
 
-		//Flash red if the search is not found.
-		if (number > globals.TOTAL_POKEMON || number <= 0) {
-			var prevColor = this.$input.css('color');
-			this.$input.css({ 'color' : 'red' });
-			setTimeout(function () { _this.$input.css({ 'color' : prevColor }); }, 100);
-		} else {
-			this.setPokemon(number);
-		}
-	},
+	// 	//Flash red if the search is not found.
+	// 	if (number > globals.TOTAL_POKEMON || number <= 0) {
+	// 		var prevColor = this.$input.css('color');
+	// 		this.$input.css({ 'color' : 'red' });
+	// 		setTimeout(function () { _this.$input.css({ 'color' : prevColor }); }, 100);
+	// 	} else {
+	// 		this.setPokemon(number);
+	// 	}
+	// },
 
 	calculateCanvasZoom: function() {
 		this.ZOOM = Math.min(
@@ -70,89 +70,89 @@ var PokemonView = Backbone.View.extend({
 		this.renderPokemon();
 	},
 
-	searchOnEnter: function(e) {
-		if (e.which == 13) {
-			this.search();
-		}
-	},
+	// searchOnEnter: function(e) {
+	// 	if (e.which == 13) {
+	// 		this.search();
+	// 	}
+	// },
 
-	navigateLeftRight: function(e) {
-		if (document.activeElement.nodeName != "BODY") { return; }
-		if (e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 32) {
-			this.nextPokemon();
-		} else if (e.keyCode == 37 || e.keyCode == 40) {
-			this.prevPokemon();
-		}
-	},
+	// navigateLeftRight: function(e) {
+	// 	if (document.activeElement.nodeName != "BODY") { return; }
+	// 	if (e.keyCode == 39 || e.keyCode == 38 || e.keyCode == 32) {
+	// 		this.nextPokemon();
+	// 	} else if (e.keyCode == 37 || e.keyCode == 40) {
+	// 		this.prevPokemon();
+	// 	}
+	// },
 
 	currentMode: "main",
 
-	changeModeMain: function() {
-		if (this.currentMode != 'main') {
-			this.$el.removeClass();
-			this.currentMode = 'main';
-		}
-	},
+	// changeModeMain: function() {
+	// 	if (this.currentMode != 'main') {
+	// 		this.$el.removeClass();
+	// 		this.currentMode = 'main';
+	// 	}
+	// },
 
-	changeModeBoxes: function() {
-		if (this.currentMode != 'boxes') {
-			this.$el.removeClass();
-			this.$el.addClass('full-screen boxes');
-			this.currentMode = 'boxes';
-		}
-	},
+	// changeModeBoxes: function() {
+	// 	if (this.currentMode != 'boxes') {
+	// 		this.$el.removeClass();
+	// 		this.$el.addClass('full-screen boxes');
+	// 		this.currentMode = 'boxes';
+	// 	}
+	// },
 
-	changeModeBars: function() {
-		if (this.currentMode != 'bars') {
-			this.$el.removeClass();
-			this.$el.addClass('full-screen bars');
-			this.currentMode = 'bars';
-		}
-	},
+	// changeModeBars: function() {
+	// 	if (this.currentMode != 'bars') {
+	// 		this.$el.removeClass();
+	// 		this.$el.addClass('full-screen bars');
+	// 		this.currentMode = 'bars';
+	// 	}
+	// },
 
-	currentColorIndices: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-	nextElementColor: function(e) {
-		e.stopPropagation();
-		var $parColor = $(e.currentTarget).closest('.box, .stripe')
-		var stripeNum = $parColor.data('num');
-		var colors = this.model.get('aggregateArray');
-		this.currentColorIndices[stripeNum]++;
-		$parColor.css({
-			'background': colors[this.currentColorIndices[stripeNum] % colors.length][0] 
-		})
+	// currentColorIndices: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+	// nextElementColor: function(e) {
+	// 	e.stopPropagation();
+	// 	var $parColor = $(e.currentTarget).closest('.box, .stripe')
+	// 	var stripeNum = $parColor.data('num');
+	// 	var colors = this.model.get('aggregateArray');
+	// 	this.currentColorIndices[stripeNum]++;
+	// 	$parColor.css({
+	// 		'background': colors[this.currentColorIndices[stripeNum] % colors.length][0] 
+	// 	})
 
-		// Change the text node without deleting the button
-		.get(0).lastChild.nodeValue = colors[this.currentColorIndices[stripeNum] % colors.length][0];
-	},
+	// 	// Change the text node without deleting the button
+	// 	.get(0).lastChild.nodeValue = colors[this.currentColorIndices[stripeNum] % colors.length][0];
+	// },
 
-	prepSearch: function() {
-		this.$input.val('');
-	},
+	// prepSearch: function() {
+	// 	this.$input.val('');
+	// },
 
-	resetName: function() {
-		this.$input.val( globals.ALL_POKEMON[this.model.get('number') - 1] );
-	},
+	// resetName: function() {
+	// 	this.$input.val( globals.ALL_POKEMON[this.model.get('number') - 1] );
+	// },
 
-	nextPokemon: function() {
-		var next = (this.model.get("number") % globals.TOTAL_POKEMON) + 1;
-		this.setPokemon(next);
-	},
+	// nextPokemon: function() {
+	// 	var next = (this.model.get("number") % globals.TOTAL_POKEMON) + 1;
+	// 	this.setPokemon(next);
+	// },
 
-	prevPokemon: function() {
-		var prev = this.model.get("number") - 1 || globals.TOTAL_POKEMON;
-		this.setPokemon(prev);
-	},
+	// prevPokemon: function() {
+	// 	var prev = this.model.get("number") - 1 || globals.TOTAL_POKEMON;
+	// 	this.setPokemon(prev);
+	// },
 
-	changeBarRenderStyle: function() {
-		curIndex = _.indexOf(this.RENDER_STYLES, this.currentRenderStyle);
-		this.currentRenderStyle = this.RENDER_STYLES[(curIndex + 1) % this.RENDER_STYLES.length];
-		this.renderBars();
-	},
+	// changeBarRenderStyle: function() {
+	// 	curIndex = _.indexOf(this.RENDER_STYLES, this.currentRenderStyle);
+	// 	this.currentRenderStyle = this.RENDER_STYLES[(curIndex + 1) % this.RENDER_STYLES.length];
+	// 	this.renderBars();
+	// },
 
-	getInput: function() {
-		var data = this.$input.val().toLowerCase();
-		return (parseInt(data) ? parseInt(data) : (_.indexOf(globals.ALL_POKEMON, data) + 1));
-	},
+	// getInput: function() {
+	// 	var data = this.$input.val().toLowerCase();
+	// 	return (parseInt(data) ? parseInt(data) : (_.indexOf(globals.ALL_POKEMON, data) + 1));
+	// },
 
 	setPokemon: function(num) {
 		if (!this.isDrawing) {
@@ -196,7 +196,7 @@ var PokemonView = Backbone.View.extend({
 			$(this.bars[i])
 
 			.css({ 'background-color': colors[i][0] })
-			console.log(colors[i][0], i)		
+			//console.log(colors[i][0], i)		
 
 			
 		}
@@ -246,46 +246,46 @@ var PokemonView = Backbone.View.extend({
 	// 	}
 	// },
 
-	renderControls: function() {
-		this.$search_box.show();
+	//renderControls: function() {
+	// 	this.$search_box.show();
 
-		var colors = this.model.get("aggregateArray");
+	// 	var colors = this.model.get("aggregateArray");
 		
-		//Input: se black arrows if the background is too light to permit others
-		var light = this.isLight(colors[0][0]);
-		this.$input.css({
-			'color'       : colors[0 + light][0],
-			'border-color': colors[1 + light][0]
-		});
-		this.resetName();
+	// 	//Input: se black arrows if the background is too light to permit others
+	// 	var light = this.isLight(colors[0][0]);
+	// 	this.$input.css({
+	// 		'color'       : colors[0 + light][0],
+	// 		'border-color': colors[1 + light][0]
+	// 	});
+	// 	this.resetName();
 		
 
-		this.$search_box.css({
-			'background-color': colors[2 + light][0]
-		});
+	// 	this.$search_box.css({
+	// 		'background-color': colors[2 + light][0]
+	// 	});
 
-		//Dark search icon if background is light
-		light = this.isLight(colors[2 + light][0]);
-		var src = light ? 'images/search_dark.png' : 'images/search_new.png';
-		this.$search_box.find('img').attr({'src' : src });
+	// 	//Dark search icon if background is light
+	// 	light = this.isLight(colors[2 + light][0]);
+	// 	var src = light ? 'images/search_dark.png' : 'images/search_new.png';
+	// 	this.$search_box.find('img').attr({'src' : src });
 
-		//Background color
-		$('#app').css({ 'background-color': colors[0][0] });
+	// 	//Background color
+	// 	$('#app').css({ 'background-color': colors[0][0] });
 
-	},
+	// },
 
-	updateInformation: function() {
-		this.$info.text(
-			this.model.get("aggregateArray")[0][0] + "\t#" + this.model.get("number")
-		);
-		this.$info.attr({
-			'href': "http://bulbapedia.bulbagarden.net/wiki/" + this.model.get("name") 
-		});
-	},
+	// updateInformation: function() {
+	// 	this.$info.text(
+	// 		this.model.get("aggregateArray")[0][0] + "\t#" + this.model.get("number")
+	// 	);
+	// 	this.$info.attr({
+	// 		'href': "http://bulbapedia.bulbagarden.net/wiki/" + this.model.get("name") 
+	// 	});
+	// },
 
-	isLight: function(color) {
+	// isLight: function(color) {
 
-		var col =  parseInt(color.substr(1, 2), 16) + parseInt(color.substr(3, 2), 16) + parseInt(color.substr(5, 2), 16);
-		return col > 240 * 3;
-	}
+	// 	var col =  parseInt(color.substr(1, 2), 16) + parseInt(color.substr(3, 2), 16) + parseInt(color.substr(5, 2), 16);
+	// 	return col > 240 * 3;
+	// }
 });

@@ -4,7 +4,7 @@ class Customers extends CI_Controller {
 
 	public function index()
 	{
-		$this->session->sess_destroy();
+		//$this->session->sess_destroy();
 		$this->load->view('productspage');
 	}
 	
@@ -30,8 +30,9 @@ class Customers extends CI_Controller {
 	}
 
 	public function add_to_cart(){
+		// var_dump($this->input->post());
+		// die();
 		$id = $this->input->post('id');
-
 		if ($this->session->userdata("cart")){
 			$items = $this->session->userdata("cart");
 		

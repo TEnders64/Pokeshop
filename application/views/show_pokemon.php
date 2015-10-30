@@ -21,6 +21,13 @@
 
 	<script type="text/javascript">
 	 	var namechanged = <?php echo json_encode($pokemon);?>;
+	 	console.log(namechanged, 'HERE');
+	 	$(document).ready(function(){
+		 	// $('form').submit(function(){
+		 	// 	console.log(this);
+		 	// 	return false;
+		 	// });
+		});
 	</script>
 	
 <style type="text/css">
@@ -72,6 +79,7 @@
 			<div id="main_picture">
 
 			<h1><?=$pokemon['name']?></h1>
+			<h2><?php //var_dump($pokemon); ?></h2>
             <img src="/assets/img/pokemon/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" height="475px;" width="475px">
 				</div>
 
@@ -79,6 +87,7 @@
 				<div id="description">
 
 				<h1>Description:</h1>
+				<p><?= $pokemon['id'] ?></p>
 				<p><?=$pokemon['description']?></p>
 				<p>Height: <?=$pokemon['height']?></p>
 				<p>Weight: <?=$pokemon['weight']?></p>
