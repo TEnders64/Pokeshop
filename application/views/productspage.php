@@ -247,6 +247,7 @@ body{
 }
 a.tnail{
 	height: 150px;
+	width: 94px;
 }
 a.tnail:hover,
 a.tnail:focus,

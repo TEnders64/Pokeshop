@@ -4,7 +4,7 @@ class Customers extends CI_Controller {
 
 	public function index()
 	{
-		//$this->session->sess_destroy();
+		$this->session->sess_destroy();
 		$this->load->view('productspage');
 	}
 	
@@ -121,8 +121,8 @@ class Customers extends CI_Controller {
 		echo json_encode($this->customer->all_pokemon($this->input->get()));
 	}
 	public function types_of_pokemon($post){
-		echo $post;
-		die();
+		// echo $post;
+		// die();
 		echo json_encode($this->customer->types_of_pokemon($post));
 	}
 
