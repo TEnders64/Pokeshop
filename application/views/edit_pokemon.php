@@ -21,7 +21,7 @@
 <?php $this->load->view('partials/customer_header'); ?>
 	<div class="container">
 		<div class="row">
-		<div class="col-md-3 col-md-offset-2">
+		<div class="col-md-3 col-md-offset-6">
 			<h2>Edit Pokemon: <?=$pokemon['id']?></h2>
 			<h1><?=$pokemon['name']?></h1>
             <img src="http://assets12.pokemon.com/assets/cms2/img/pokedex/detail/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" >
