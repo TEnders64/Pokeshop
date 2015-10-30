@@ -1,8 +1,9 @@
+console.log(namechanged, 1);
 var PokemonModel = Backbone.Model.extend({
-
+// var pokemonNo = <?php echo json_encode($pokemon)?>;
 
 	initialize: function() {
-
+		console.log(namechanged.id);
 		//Initialize 96 x 96 2D array to carry pixel color information.
 		
 		for (var i = 0; i < globals.SPRITE_HEIGHT; i++) {
@@ -11,7 +12,7 @@ var PokemonModel = Backbone.Model.extend({
 
 		var reqPokemon = _.indexOf(globals.ALL_POKEMON, location.hash.substr(1, location.hash.length)) + 1;
 		if (reqPokemon < 1) {
-			this.set('number', Math.ceil(Math.random() * 150));
+			this.set('number', (namechanged.id));
 		} else {
 			this.set('number', reqPokemon);
 		}
@@ -35,7 +36,6 @@ var PokemonModel = Backbone.Model.extend({
 		for individual pixels... Might be better functionality more fit for the backend but
 		you get what you pay for hehe. */
 	setPokemon: function(number) {
-
 		if (number > 719) { number = 1; };
 
 		canvas = document.getElementById('processing-canvas');
@@ -51,6 +51,7 @@ var PokemonModel = Backbone.Model.extend({
 		pokeImg.src = '/assets/img/pokeapi/' + number + '.png';
 		
 
+
 		//Wait for the image to load and draw before processing
 		var _this = this;
 		pokeImg.onload = function() {
@@ -59,6 +60,8 @@ var PokemonModel = Backbone.Model.extend({
 			_this._getSpriteData(canvas, context);
 
 		}
+		console.log(this);
+
 	},
 
 
@@ -84,6 +87,7 @@ var PokemonModel = Backbone.Model.extend({
 		}
 		this.set('aggregateArray', _.sortBy(_.pairs(this.get('aggregateColors')), function(el) { return el[1] * -1; }));
 		this.trigger('loadedPokemon');
+
 	},
 
 
@@ -104,5 +108,5 @@ var PokemonModel = Backbone.Model.extend({
 		}
 		return '#' + r + b + g;
 	}
-
 });
+
