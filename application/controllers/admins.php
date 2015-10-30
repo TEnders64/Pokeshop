@@ -24,7 +24,12 @@ class Admins extends CI_Controller {
 	}
 	
 	public function admin_orders(){
-		$this->load->view('admin_orders');
+		if ($this->session->userdata('id') != null){
+			$this->load->view('admin_orders');
+		}
+		else{
+			redirect('/');
+		}
 	}
 	
 	public function search_orders(){
@@ -36,12 +41,27 @@ class Admins extends CI_Controller {
 	}
 
 	public function new_pokemon(){
-		$this->load->view("new_pokemon");
+		if ($this->session->userdata('id') != null){
+			$this->load->view("new_pokemon");
+		}
+		else{
+			redirect('/');
+		}
 	}
 
 	public function create(){
-		$this->admin->create($this->input->post());
-		redirect("/admins/admin_pokemons");
+		if ($this->session->userdata('id') != null){
+			if($this->admin->create($this->input->post())){
+				redirect("/admins/admin_pokemons");
+
+			}
+			else{
+				redirect('/admins/new_pokemon');
+			}
+		}
+		else{
+			redirect('/');
+		}
 	}
 
 	public function edit($pokemon_id){
@@ -57,18 +77,30 @@ class Admins extends CI_Controller {
 	}
 
 	public function delete($id){
-		$this->admin->delete($id);
+		if ($this->session->userdata('id') != null){
+			$this->admin->delete($id);
+		}
+		else{
+			redirect('/');
+		}
+
 	}
 
 	public function update($id){
+
 		$this->admin->update($id, $this->input->post());
 		redirect("/admins/admin_pokemons");
 	}
 
 	public function admin_pokemons(){
-		$pokemons = $this->admin->all_pokemons();
-
-		$this->load->view('admin_pokemons', array("pokemons" => $pokemons));
+		if ($this->session->userdata('id') != null){
+			$pokemons = $this->admin->all_pokemons();
+			$this->load->view('admin_pokemons', array("pokemons" => $pokemons));
+		}
+		else{
+			redirect('/');
+		}
+	
 	}
 }
 ?>
