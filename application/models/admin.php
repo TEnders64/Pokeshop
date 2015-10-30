@@ -53,11 +53,11 @@ class Admin extends CI_Model {
 	}
 
 	public function create($post){
-		$count = $this->db->query("SELECT COUNT(id) FROM pokemons");
-		$count = $count + 1;
+		$count = $this->db->query("SELECT COUNT(id) AS count FROM pokemons")->row_array();
+		$new_id = $count['count'] + 1;
 		$query = "INSERT INTO pokemons (id, name, price, description, height, weight, speed, exp, attack, defense, abilities, types, created_at, updated_at)
 				VALUES (?,?,?,?,?,?,?,?,?,?,?,?, NOW(), NOW())";
-		$values = array($count, $post['name'], $post['price'], $post['description'], $post['height'], $post['weight'], $post['speed'], $post['exp'], $post['attack'], $post['defense'], $post['abilities'], $post['types']);
+		$values = array($new_id, $post['name'], $post['price'], $post['description'], $post['height'], $post['weight'], $post['speed'], $post['exp'], $post['attack'], $post['defense'], $post['abilities'], $post['types']);
 
 		$this->db->query($query,$values);
 	}

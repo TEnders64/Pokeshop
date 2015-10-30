@@ -127,33 +127,33 @@ class Customers extends CI_Controller {
 		echo json_encode($this->customer->types_of_pokemon($post));
 	}
 
-	public function login(){
-		if ($this->session->userdata('customer_id')){
-			redirect('/customers/checkout');
-		}else{
-			$this->load->view('customer_login');
-		}
-	}
+	// public function login(){
+	// 	if ($this->session->userdata('customer_id')){
+	// 		redirect('/customers/checkout');
+	// 	}else{
+	// 		$this->load->view('customer_login');
+	// 	}
+	// }
 
-	public function validate_login(){
-		$result = $this->customer->login($this->input->post());
-		if ($result){
-			redirect("/customers/checkout");
-		}else{
-			redirect("/customers/login");
-		}
-	}
+	// public function validate_login(){
+	// 	$result = $this->customer->login($this->input->post());
+	// 	if ($result){
+	// 		redirect("/customers/checkout");
+	// 	}else{
+	// 		redirect("/customers/login");
+	// 	}
+	// }
 
-	public function validate_registration(){
-		$this->customer->register($this->input->post());
+	// public function validate_registration(){
+	// 	$this->customer->register($this->input->post());
 		
-		redirect("/customers/login");
-	}
+	// 	redirect("/customers/login");
+	// }
 
-	public function logout(){
-		$this->session->sess_destroy();
-		redirect("/customers");
-	}
+	// public function logout(){
+	// 	$this->session->sess_destroy();
+	// 	redirect("/customers");
+	// }
 	// i give up...
 	public function types_of_pokemon_normal(){
 	
