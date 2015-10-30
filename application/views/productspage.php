@@ -172,7 +172,7 @@
 }
 </style>
 <body>
-<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
+<?php $this->load->view('partials/customer_header'); ?>
 <!-- top bar here -->
 <div class="row-fluid">
 <div id="types" class="span2">

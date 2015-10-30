@@ -118,7 +118,7 @@ class Customers extends CI_Controller {
 	}
 
 	public function login(){
-		if ($this->session->userdata('id')){
+		if ($this->session->userdata('customer_id')){
 			redirect('/customers/checkout');
 		}else{
 			$this->load->view('customer_login');

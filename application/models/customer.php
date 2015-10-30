@@ -57,7 +57,7 @@ class Customer extends CI_Model {
 
 			$customer = $this->db->query($query,$values)->row_array();
 			if ($customer){
-				$this->session->set_userdata("id", $customer['id']);
+				$this->session->set_userdata("customer_id", $customer['id']);
 				$this->session->set_userdata("name", $customer['first_name']);
 				return true;
 			}else{

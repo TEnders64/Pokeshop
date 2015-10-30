@@ -28,7 +28,7 @@
 	</style>
 </head><!-- end head -->
 <body>
-<?php $this->load->view('partials/customer_header', array('cart' => $this->session->userdata('cart'))) ?>
+<?php $this->load->view('partials/customer_header'); ?>
 	<div id="container">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-6">
