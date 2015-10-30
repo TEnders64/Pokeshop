@@ -3,7 +3,9 @@
 <head>
 	<title>Pokemon Info</title>
 	<link rel="icon" type="image/gif" href="http://orig02.deviantart.net/5de6/f/2010/104/2/5/spinning_poke_ball_by_secondcrimson.gif"/>
+
 	<!-- <link rel="stylesheet" type="text/css" href="/assets/style_show_pokemon.css"> -->
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -14,19 +16,22 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-	
+		
 	</script><!-- end script -->
+
 	<script type="text/javascript">
 	 	var namechanged = <?php echo json_encode($pokemon);?>;
 	</script>
 	
 <style type="text/css">
 	.panel{
+
 	 		background: rgba(10,10,10,0.3);
 	 		color: white;
 	 		padding-bottom: 15px;
 	 		margin-bottom: 0px;
 	 	}
+
 	#processing-canvas{
 	visibility: hidden;
 	float: right;
@@ -64,11 +69,14 @@
 		<div class="bar">
 		<div id="main_display">
 			<div id="main_picture">
+
 			<h1><?=$pokemon['name']?></h1>
             <img src="/assets/img/pokemon/<?= sprintf("%03d", $pokemon['id']) ?>.png" alt="<?=$pokemon['name']?> picture" height="475px;" width="475px">
 				</div>
+
 				
 				<div id="description">
+
 				<h1>Description:</h1>
 				<p><?=$pokemon['description']?></p>
 				<p>Height: <?=$pokemon['height']?></p>
@@ -92,6 +100,7 @@
 									
 			</div>
 		</div> 
+
 		<div id="similar">
 			<div class="container">
 				<div class="row">
@@ -106,6 +115,7 @@
 		</div> <!-- end Similar -->
 		<canvas id="pokemon" class="unselectable" width="1000" height="1000"></canvas>
 		<canvas id="processing-canvas" height="120" width="120"></canvas>
+
 	</div> <!-- end container -->
 </div>
 	<script src="/assets/scripts/underscore.min.js" type="text/javascript"></script>

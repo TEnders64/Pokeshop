@@ -17,7 +17,20 @@
         <li><a href="/customers">Home <span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/customers/showcart">Cart ()</a></li>
+        <li><a href="/customers/loadcart">Cart (<?php if ($this->session->userdata('cart')){
+              $cart = $this->session->userdata('cart');
+              $sum = 0;
+              foreach ($cart as $id => $quantity){
+                $sum += $quantity;
+              }
+              echo $sum;
+        }
+        else{
+          echo 0;
+        }
+        ?>)
+        </a></li>
+        <?php if ($this->session->userdata('customer_id')){echo '<li><a href="/customers/logout">Logout</a></li>';} ?>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
