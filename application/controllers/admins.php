@@ -25,7 +25,9 @@ class Admins extends CI_Controller {
 	
 	public function admin_orders(){
 		if ($this->session->userdata('id') != null){
-			$this->load->view('admin_orders');
+			$orders = $this->admin->get_orders();
+
+			$this->load->view('admin_orders', array("orders" => $orders));
 		}
 		else{
 			redirect('/');

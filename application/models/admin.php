@@ -33,10 +33,17 @@ class Admin extends CI_Model {
 	}
 
 	//work yet to do...
-	public function search_orders($post){
-		$query = "SELECT * FROM orders WHERE name = ?";
-		$values = $post['search'];
-		return $this->db->query($query, $values)->result_array();
+	public function get_orders(){
+		$query_order = "SELECT orders.id, orders.email, shipping.first_name, shipping.last_name, CONCAT(shipping.address1,' ',shipping.address2,' ',shipping.city,' ',shipping.state,' ',shipping.zip) AS address 
+						FROM orders JOIN shipping ON orders.address_id = shipping.id";
+		return $this->db->query($query_order)->result_array();
+	}
+
+	public function search_orders($order_id){
+		$query_order = "SELECT orders.id, orders.email, shipping.first_name, shipping.last_name, CONCAT(shipping.address1,' ',shipping.address2,' ',shipping.city,' ',shipping.state,' ',shipping.zip) AS address 
+						FROM orders JOIN shipping ON orders.address_id = shipping.id WHERE orders.id = ?";
+		$values = $order_id;
+		return $this->db->query($query_order, $values)->row_array();
 	}
 
 	public function all_pokemons(){

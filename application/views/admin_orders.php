@@ -26,19 +26,20 @@
 		<table id="ordersTable" class="table table-striped table-hover">
 			<thead>
 				<th class="text-center">Order ID</th>
+				<th class="text-center">Email</th>
 				<th class="text-center">First Name</th>
 				<th class="text-center">Last Name</th>
-				<th class="text-center">Billing Address</th>
-				<th class="text-center">Total</th>
+				<th class="text-center">Shipping Address</th>
 				<th class="text-center">Status</th>
 			</thead>
 			<tbody>
+<?php 	foreach ($orders as $order){ ?>
 				<tr>
-				<td class="text-center">ID</td>
-				<td class="text-center">First</td>
-				<td class="text-center">Last</td>
-				<td class="text-center">Billing</td>
-				<td class="text-center">$99999999.00</td>
+				<td class="text-center"><?= $order['id'] ?></td>
+				<td class="text-center"><?= $order['email'] ?></td>
+				<td class="text-center"><?= $order['first_name'] ?></td>
+				<td class="text-center"><?= $order['last_name'] ?></td>
+				<td class="text-center"><?= $order['address'] ?></td>
 				<td class="text-center">
 				<div class="btn-group" id="status">
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,6 +53,7 @@
 				</div>
 				</td>
 			</tr>
+<?php } ?>
 			</tbody>
 		</table>
 	</div>
