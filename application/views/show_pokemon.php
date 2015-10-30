@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Pokemon Info</title>
+	<link rel="icon" type="image/gif" href="http://orig02.deviantart.net/5de6/f/2010/104/2/5/spinning_poke_ball_by_secondcrimson.gif"/>
 	<link rel="stylesheet" type="text/css" href="/assets/style_show_pokemon.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
