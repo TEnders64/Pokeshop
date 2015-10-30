@@ -72,6 +72,7 @@ class Customer extends CI_Model {
 		return $this->db->query($query)->result_array();
 
 	}
+	
 	public function one_pokemon($pokemon_id){
 		$query = "SELECT * FROM pokemons WHERE id = ?";
 		$values = $pokemon_id;
@@ -84,10 +85,81 @@ class Customer extends CI_Model {
 
 		$query = "SELECT id FROM pokemons WHERE types LIKE ?";
 		$values = '%' . $this_type[count($this_type)-2] . '%';
-
 		return $this->db->query($query,$values)->result_array();
 
 		
+	}
+	public function types_of_pokemon_normal(){
+			$query = "SELECT id , name FROM pokemons WHERE types LIKE '%normal%'";
+			return $this->db->query($query)->result_array();
+		}
+	public function types_of_pokemon_fire(){
+			$query = "SELECT id , name FROM pokemons WHERE types LIKE '%fire%'";
+			return $this->db->query($query)->result_array();
+		}
+	public function types_of_pokemon_water(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%water%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_grass(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%grass%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_electric(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%electric%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_ice(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%ice%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_fighting(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%fighting%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_poison(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%poison%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_ground(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%ground%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_flying(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%flying%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_psychic(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%psychic%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_bug(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%bug%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_rock(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%rock%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_ghost(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%ghost%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_dark(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%dark%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_dragon(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%dragon%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_steel(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%steel%'";
+		return $this->db->query($query)->result_array();
+	}
+	public function types_of_pokemon_fairy(){
+		$query = "SELECT id , name FROM pokemons WHERE types LIKE '%fairy%'";
+		return $this->db->query($query)->result_array();
 	}
 
 

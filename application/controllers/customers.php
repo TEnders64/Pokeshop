@@ -116,6 +116,11 @@ class Customers extends CI_Controller {
 	public function all_pokemon(){		
 		echo json_encode($this->customer->all_pokemon($this->input->get()));
 	}
+	public function types_of_pokemon($post){
+		echo $post;
+		die();
+		echo json_encode($this->customer->types_of_pokemon($post));
+	}
 
 	public function login(){
 		if ($this->session->userdata('customer_id')){
@@ -144,5 +149,79 @@ class Customers extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect("/customers");
 	}
+	// i give up...
+	public function types_of_pokemon_normal(){
+	
+		echo json_encode($this->customer->types_of_pokemon_normal($this->input->get()));
+	}
+	public function types_of_pokemon_fire(){
+	
+		echo json_encode($this->customer->types_of_pokemon_fire($this->input->get()));
+	}
+	public function types_of_pokemon_water(){
+	
+		echo json_encode($this->customer->types_of_pokemon_water($this->input->get()));
+	}
+	public function types_of_pokemon_grass(){
+	
+		echo json_encode($this->customer->types_of_pokemon_grass($this->input->get()));
+	}
+	public function types_of_pokemon_electric(){
+	
+		echo json_encode($this->customer->types_of_pokemon_electric($this->input->get()));
+	}
+	public function types_of_pokemon_ice(){
+	
+		echo json_encode($this->customer->types_of_pokemon_ice($this->input->get()));
+	}
+	public function types_of_pokemon_fighting(){
+	
+		echo json_encode($this->customer->types_of_pokemon_fighting($this->input->get()));
+	}
+	public function types_of_pokemon_poison(){
+	
+		echo json_encode($this->customer->types_of_pokemon_poison($this->input->get()));
+	}
+	public function types_of_pokemon_ground(){
+	
+		echo json_encode($this->customer->types_of_pokemon_ground($this->input->get()));
+	}
+	public function types_of_pokemon_flying(){
+	
+		echo json_encode($this->customer->types_of_pokemon_flying($this->input->get()));
+	}
+	public function types_of_pokemon_psychic(){
+	
+		echo json_encode($this->customer->types_of_pokemon_psychic($this->input->get()));
+	}
+	public function types_of_pokemon_bug(){
+	
+		echo json_encode($this->customer->types_of_pokemon_bug($this->input->get()));
+	}
+	public function types_of_pokemon_rock(){
+	
+		echo json_encode($this->customer->types_of_pokemon_rock($this->input->get()));
+	}
+	public function types_of_pokemon_ghost(){
+	
+		echo json_encode($this->customer->types_of_pokemon_ghost($this->input->get()));
+	}
+	public function types_of_pokemon_dark(){
+	
+		echo json_encode($this->customer->types_of_pokemon_dark($this->input->get()));
+	}
+	public function types_of_pokemon_dragon(){
+	
+		echo json_encode($this->customer->types_of_pokemon_dragon($this->input->get()));
+	}
+	public function types_of_pokemon_steel(){
+	
+		echo json_encode($this->customer->types_of_pokemon_steel($this->input->get()));
+	}
+	public function types_of_pokemon_fairy(){
+	
+		echo json_encode($this->customer->types_of_pokemon_fairy($this->input->get()));
+	}
+
 }
 ?>
