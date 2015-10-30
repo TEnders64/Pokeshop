@@ -63,43 +63,43 @@
 	<div class="col-md-4 col-md-offset-1">		
 	<h3>Billing Information</h3>
 	<form action="" method="post">
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="first_name">First Name</label>
 			<input type="text" name="first_name" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="last_name">Last Name</label>
 			<input type="text" name="last_name" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="address1">Address: </label>
 			<input type="text" name="address1" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="address2">Address 2: </label>
 			<input type="text" name="address2" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="city">City: </label>
 			<input type="text" name="city" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="state">State: </label>
 			<input type="text" name="state" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="zip">Zip: </label>
 			<input type="number" name="zip" min="00000" max="99999"/></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="CC_num">Card Number: </label>
 			<input type="text" name="CC_num" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="CCV">Security Code: </label>
 			<input type="text" name="CCV" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="month"> Expiration: </label>
 			<select name="month">
 <?php 		for ($i = 1; $i<=12; $i++){?>
@@ -123,31 +123,31 @@
 		<div class="form-group">
 		<p><input type="checkbox" name="same_as_billing" /> Same as Billing</p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="first_name">First Name</label>
 			<input type="text" name="first_name" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="last_name">Last Name</label>
 			<input type="text" name="last_name" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="address1">Address: </label>
 			<input type="text" name="address1" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="address2">Address 2: </label>
 			<input type="text" name="address2" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="city">City: </label>
 			<input type="text" name="city" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="state">State: </label>
 			<input type="text" name="state" /></p>
 		</div>
-		<div class="form-group">
+		<div class="form-group text-right">
 			<label for="zip">Zip: </label>
 			<input type="number" name="zip" min="00000" max="99999"/></p>
 		</div>
