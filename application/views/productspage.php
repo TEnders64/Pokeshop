@@ -5,6 +5,7 @@
 	<link rel="icon" type="image/gif" href="http://orig02.deviantart.net/5de6/f/2010/104/2/5/spinning_poke_ball_by_secondcrimson.gif"/>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/assets/productspage.css">
 	<title>Pok&eacute;mon</title>
 	
 	<script type="text/javascript">
@@ -44,6 +45,7 @@
 	$(document).on('click', ".list_item_" ,function(){
 		var type_selected = event.target.id
 		console.log(type_selected);
+		$("#body").attr('class', type_selected);
 		$.get("/customers/types_of_pokemon_"+type_selected , function(pokemon){
 			console.log(pokemon)
 			var pages = Math.ceil(pokemon.length / 60);
@@ -81,47 +83,6 @@
 	</script>
 </head>
 <style type="text/css">
-body{
-	background-color: #c12026;
-}
-.tnail img {
- /*min-height:50px; height:200px;*/
- width: 100%;
-  }
-	#types{
-		width: 16%;
-		height: auto;
-		display: inline-block;
-		text-align: center;
-	}
-		#types ul{
-			list-style: none;
-			/*width: 100%;*/
-	  		/*display: table;*/
-	  		width: 100px;
-	  		margin: auto;
-	  		padding: 0px;
-		}
-		#types ul li {
-			/*display: table-cell;*/
-			
-			text-align: center;
-		}
-	#main_box{
-		display: inline-block;
-		width: 78%;
-		vertical-align: top;
-	}
-		#main_box h3{
-			display: inline-block;
-			width: auto;
-			vertical-align: top;
-	}
-	#navbar{
-		display: inline-block;
-		margin-left: 75%;
-
-	}
 	.icons{
 		/*width: 140px;
 		height: 150px;
@@ -259,7 +220,7 @@ a.tnail.active {
   color: #333333;
 }
 </style>
-<body>
+<body id="body">
 <?php $this->load->view('partials/customer_header'); ?>
 <!-- top bar here -->
 <div class="row-fluid">
@@ -280,7 +241,7 @@ a.tnail.active {
 		Normal</li>
 		<li id="fire" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);">
 		Fire</li>
-		<li id="water" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #4592c4 50%, #4592c4 50%)">
+		<li id="water" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #4592c4 50%, #4592c4 50%);">
 		Water</li>
 		<li id="grass" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);">
 		Grass</li>

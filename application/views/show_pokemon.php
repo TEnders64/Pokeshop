@@ -41,6 +41,7 @@
 		float: right;
 	}
 	body{
+		overflow-y: hidden;
 		overflow-x: hidden;
 	}
 	#main_picture{
