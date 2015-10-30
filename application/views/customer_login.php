@@ -20,8 +20,6 @@
 	<div class="row">
 		<div class="col-md-3 col-md-offset-1">		
 			<h3 class="text-right">Register</h3>
-			<?= $this->session->flashdata("success") ?>
-			<?= $this->session->flashdata("reg_errors") ?>
 			<form action="/customers/validate_registration" method="post">
 				<div class="form-group text-right">
 					<label for="first_name">First Name</label>
@@ -65,6 +63,8 @@
 				</div>
 				<div class="form-group text-right">
 					<button class="btn btn-primary btn-md" type="submit">Register</button>
+					<?= $this->session->flashdata("success") ?>
+					<?= $this->session->flashdata("reg_errors") ?>
 				</div>
 			</form>
 		</div>

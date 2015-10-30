@@ -35,7 +35,7 @@ class Customer extends CI_Model {
 
 			$this->db->query($query2, $values2);
 
-			$this->session->set_flashdata("success","Registration Successful, Please Log In");
+			$this->session->set_flashdata("success","<h5 class='text-center' style='color:green'>Registration Successful, Please Log In</h5>");
 			return true;
 		}
 	}
@@ -77,6 +77,12 @@ class Customer extends CI_Model {
 		$values = $pokemon_id;
 		
 		return $this->db->query($query, $values)->row_array();
+	}
+
+	public function search_pokemon($post){
+		$query = "SELECT * FROM pokemons WHERE name LIKE ? ";
+		$values = '%'. $post['search'] . '%';
+		return $this->db->query($query, $values)->result_array();
 	}
 
 	public function similar($type){

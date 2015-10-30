@@ -9,28 +9,54 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$.get("/customers/all_pokemon", function(pokemon){
-			console.log(pokemon);
-			var pages = Math.ceil(pokemon.length / 70);
-			var html_str2 = ""
-			for (var i = 1; i <= pages; i++){
-				html_str2 += "<li class='pageno' id='"+i+"'>"+i+"</a></li>";
-			};
-			$(".pagination").html(html_str2)
-			$(".pageno").on('click', function(){
-				var pageno = event.target.id
-				$("#where_the_pokemon_go").html("<div></div>");
-				for (var i = ((pageno - 1) * 70) + 1; i <=pageno * 70; i++) {
-					var html_str =""
-					html_str += "<div class='icons' style='display:inline-block;text-align:center;'>"
-					html_str += "<a href='/customers/show/"+i+"'>"
-					html_str += "<img src='/assets/img/pokeapi/"+i+".png'>"
-					html_str += "<p>"+pokemon[i - 1].name+"</p></a>"
-					html_str += "</div>";
-					$("#where_the_pokemon_go").append(html_str);
+		//$("#1").click();
+		// get_all();
+		// function get_all(){
+			
+			$.get("/customers/all_pokemon", function(pokemon){
+				console.log(pokemon);
+				var pages = Math.ceil(pokemon.length / 70);
+				var html_str2 = "";
+				for (var i = 1; i <= pages; i++){
+					html_str2 += "<li class='pageno' id='"+i+"'>"+i+"</a></li>";
 				};
-			});
-		},"json");
+				$(".pagination").html(html_str2);
+				
+				$('body').one('mousemove', function(){
+					$(".pageno").on('click', function(){
+						var pageno = event.target.id;
+						$("#where_the_pokemon_go").html("<div></div>");
+						for (var i = ((pageno - 1) * 70) + 1; i <=pageno * 70; i++) {
+							var html_str ="";
+							html_str += "<div class='icons' style='display:inline-block;text-align:center;'>";
+							html_str += "<a href='/customers/show/"+i+"'>";
+							html_str += "<img src='/assets/img/pokeapi/"+i+".png'>";
+							html_str += "<p>"+pokemon[i - 1].name+"</p></a>";
+							html_str += "</div>";
+							$("#where_the_pokemon_go").append(html_str);
+
+						};
+
+					});
+				});
+				return false;
+			},"json");
+
+		//}
+
+
+		$('form[name="search"]').on('submit',function(){
+			$.post('/customers/search', function(pokemons){
+				console.log(pokemons);
+			}, 'json');
+
+			return false;
+		});
+
+		// setTimeout(function(){
+		// $("#1").on('click',function(){console.log(this);});
+		// },10);
+
 	});
 	</script>
 </head>
@@ -176,14 +202,11 @@
 <!-- top bar here -->
 <div class="row-fluid">
 <div id="types" class="span2">
-	<form>
-		<input type="text" placeholder="pok&eacute;mon name.">
+	<form action="/customers/search" name="search" method="post">
+		<input type="text" name="search" placeholder="pok&eacute;mon name.">
 		<input type="submit">
 	</form>
 	</br>
-	<h4>
-		Types
-	</h4>
 	<ul class="list-group">
 	<!-- have each type have a colored background or be a button with the color of the type it is -->
 		<li class="list-group-item" style="background:linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);">
@@ -230,16 +253,6 @@
 	<div class="2">
 		<h3>//Type</h3>
 	</div>
-	<div id="navbar" class="span3 offset 4" style="vertical-alight:top;">
-	<p>Sorted by</p>
-	<form>
-		<select>
-		<!-- sort by options -->
-			<option></option>
-		</select>
-	</form>
-	</div>
-	
 	<div id="where_the_pokemon_go">
 		<!-- tems go here -->
 		<!-- 72 -->
@@ -252,9 +265,7 @@
 		  <li>test</li>   
 		  </ul>
 		</nav>
-		<ul  id="pages_bar">
-			
-		</ul>
+		<ul  id="pages_bar"></ul>
 	</div>
 </div>
 </div>

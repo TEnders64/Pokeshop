@@ -4,7 +4,7 @@ class Customers extends CI_Controller {
 
 	public function index()
 	{
-		// $this->session->sess_destroy();
+		//$this->session->sess_destroy();
 		$this->load->view('productspage');
 	}
 	
@@ -25,7 +25,12 @@ class Customers extends CI_Controller {
 			));
 	}
 
+	public function search(){
+		echo json_encode($this->customer->search_pokemon($this->input->post()));
+	}
+
 	public function add_to_cart(){
+		$id = $this->input->post('id');
 
 		if ($this->session->userdata("cart")){
 			$items = $this->session->userdata("cart");
@@ -33,7 +38,6 @@ class Customers extends CI_Controller {
 			$items[$this->input->post('id')] = $this->input->post('quantity');
 
 		 	$this->session->set_userdata("cart", $items);
-		 	$id = $this->input->post('id');
 
 		}else{
 
