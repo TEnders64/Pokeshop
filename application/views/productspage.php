@@ -5,6 +5,7 @@
 	<link rel="icon" type="image/gif" href="http://orig02.deviantart.net/5de6/f/2010/104/2/5/spinning_poke_ball_by_secondcrimson.gif"/>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/assets/productspage.css">
 	<title>Pok&eacute;mon</title>
 	
 	<script type="text/javascript">
@@ -44,6 +45,7 @@
 	$(document).on('click', ".list_item_" ,function(){
 		var type_selected = event.target.id
 		console.log(type_selected);
+		$("#body").attr('class', type_selected);
 		$.get("/customers/types_of_pokemon_"+type_selected , function(pokemon){
 			console.log(pokemon)
 			var pages = Math.ceil(pokemon.length / 60);
@@ -81,184 +83,9 @@
 	</script>
 </head>
 <style type="text/css">
-body{
-	background-color: #c12026;
-}
-.tnail img {
- /*min-height:50px; height:200px;*/
- width: 100%;
-  }
-	#types{
-		width: 16%;
-		height: auto;
-		display: inline-block;
-		text-align: center;
-	}
-		#types ul{
-			list-style: none;
-			/*width: 100%;*/
-	  		/*display: table;*/
-	  		width: 100px;
-	  		margin: auto;
-	  		padding: 0px;
-		}
-		#types ul li {
-			/*display: table-cell;*/
-			
-			text-align: center;
-		}
-	#main_box{
-		display: inline-block;
-		width: 78%;
-		vertical-align: top;
-	}
-		#main_box h3{
-			display: inline-block;
-			width: auto;
-			vertical-align: top;
-	}
-	#navbar{
-		display: inline-block;
-		margin-left: 75%;
 
-	}
-	.icons{
-		/*width: 140px;
-		height: 150px;
-		max-width: 140px;
-		max-height: 150px;
-		margin: 5px;
-		background-color: #a0a5a7;
-		display: inline-table;*/
-	}
-	/*here starts the css after the pages work, earlier may need to be made to work with boot strap*/
-	.pagination {
-  display: inline-block;
-  padding-left: 0;
-  margin: 20px 0;
-  border-radius: 4px;
-}
-.pagination > li {
-  display: inline;
-}
-.pagination > li,
-.pagination > li > span {
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  line-height: 1.42857143;
-  text-decoration: none;
-  color: #337ab7;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  margin-left: -1px;
-}
-.pagination > li:first-child > a,
-.pagination > li:first-child > span {
-  margin-left: 0;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
-}
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
-}
-.pagination > li:hover,
-.pagination > li > span:hover,
-.pagination > li:focus,
-.pagination > li > span:focus {
-  z-index: 3;
-  color: #23527c;
-  background-color: #eeeeee;
-  border-color: #dddddd;
-}
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-  z-index: 2;
-  color: #ffffff;
-  background-color: #337ab7;
-  border-color: #337ab7;
-  cursor: default;
-}
-.pagination > .disabled > span,
-.pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus,
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
-  color: #777777;
-  background-color: #ffffff;
-  border-color: #dddddd;
-  cursor: not-allowed;
-}
-.pagination-lg > li,
-.pagination-lg > li > span {
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
-}
-.pagination-lg > li:first-child > a,
-.pagination-lg > li:first-child > span {
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
-}
-.pagination-lg > li:last-child > a,
-.pagination-lg > li:last-child > span {
-  border-bottom-right-radius: 6px;
-  border-top-right-radius: 6px;
-}
-.pagination-sm > li,
-.pagination-sm > li > span {
-  padding: 5px 10px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-.pagination-sm > li:first-child > a,
-.pagination-sm > li:first-child > span {
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-}
-.pagination-sm > li:last-child > a,
-.pagination-sm > li:last-child > span {
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
-}
-.tnail {
-  display: inline-block;
-  padding: 4px;
-  margin-bottom: 20px;
-  /*line-height: 1.42857143;*/
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  -webkit-transition: border 0.2s ease-in-out;
-  -o-transition: border 0.2s ease-in-out;
-  transition: border 0.2s ease-in-out;
-}
-.tnail > img,
-.tnail a > img {
-  margin-left: auto;
-  margin-right: auto;'
-}
-a.tnail{
-	height: 150px;
-}
-a.tnail:hover,
-a.tnail:focus,
-a.tnail.active {
-  border-color: #337ab7;
-}
-.tnail .caption {
-  padding: 9px;
-  color: #333333;
-}
 </style>
-<body>
+<body id="body">
 <?php $this->load->view('partials/customer_header'); ?>
 <!-- top bar here -->
 <div class="row-fluid">
@@ -279,7 +106,7 @@ a.tnail.active {
 		Normal</li>
 		<li id="fire" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);">
 		Fire</li>
-		<li id="water" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #4592c4 50%, #4592c4 50%)">
+		<li id="water" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #4592c4 50%, #4592c4 50%);">
 		Water</li>
 		<li id="grass" class="list-group-item list_item_" style="color: white;background:linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);">
 		Grass</li>
