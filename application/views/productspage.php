@@ -11,7 +11,7 @@
 	$(document).ready(function(){
 		$.get("/customers/all_pokemon", function(pokemon){
 			console.log(pokemon);
-			var pages = Math.ceil(pokemon.length / 72);
+			var pages = Math.ceil(pokemon.length / 60);
 			var html_str2 = ""
 			for (var i = 1; i <= pages; i++){
 				html_str2 += "<li class='pageno' id='"+i+"'>"+i+"</li>";
@@ -20,7 +20,7 @@
 			$(".pageno").on('click', function(){
 				var pageno = event.target.id
 				$("#where_the_pokemon_go").html("<div></div>");
-				for (var i = ((pageno - 1) * 72) + 1; i <=pageno * 72; i++) {
+				for (var i = ((pageno - 1) * 60) + 1; i <=pageno * 60; i++) {
 					var html_str =""
 					html_str += "<div class='col-md-1' style='display:inline-block;text-align:center;'>"
 					html_str += "<a href='/customers/show/"+i+"' class='tnail'>"
@@ -30,7 +30,7 @@
 					$("#where_the_pokemon_go").append(html_str);
 				};				
 			});
-			for (var i = ((1 - 1) * 72) + 1; i <=1 * 72; i++) {
+			for (var i = ((1 - 1) * 60) + 1; i <=1 * 60; i++) {
 					var html_str =""
 					html_str += "<div class='col-md-1' style='display:inline-block;text-align:center;'>"
 					html_str += "<a href='/customers/show/"+i+"' class='tnail'>"
@@ -46,7 +46,7 @@
 		console.log(type_selected);
 		$.get("/customers/types_of_pokemon_"+type_selected , function(pokemon){
 			console.log(pokemon)
-			var pages = Math.ceil(pokemon.length / 72);
+			var pages = Math.ceil(pokemon.length / 60);
 			var html_str2 = ""
 			for (var i = 1; i <= pages; i++){
 				html_str2 += "<li class='pageno' id='"+i+"'>"+i+"</li>";
@@ -55,10 +55,10 @@
 			$(".pageno").on('click', function(){
 				var pageno = event.target.id
 				$("#where_the_pokemon_go").html("<div></div>");
-				for (var i = ((pageno - 1) * 72) + 1; i <=pageno * 72; i++) {
+				for (var i = ((pageno - 1) * 60) + 1; i <=pageno * 60; i++) {
 					var html_str =""
 					html_str += "<div class='col-md-1' style='display:inline-block;text-align:center;'>"
-					html_str += "<a href='/customers/show/"+i+"' class='tnail'>"
+					html_str += "<a href='/customers/show/"+pokemon[i-1].id+"' class='tnail'>"
 					html_str += "<img src='/assets/img/pokeapi/"+pokemon[i-1].id+".png'>"
 					html_str += "<p>"+pokemon[i - 1].name+"</p></a>"
 					html_str += "</div>";
@@ -66,10 +66,10 @@
 				};
 			});
 			$("#where_the_pokemon_go").html("<div></div>");
-			for (var i = ((1 - 1) * 72) + 1; i <=1 * 72; i++) {
+			for (var i = ((1 - 1) * 60) + 1; i <=1 * 60; i++) {
 					var html_str =""
 					html_str += "<div class='col-md-1' style='display:inline-block;text-align:center;'>"
-					html_str += "<a href='/customers/show/"+i+"' class='tnail'>"
+					html_str += "<a href='/customers/show/"+pokemon[i-1].id+"' class='tnail'>"
 					html_str += "<img src='/assets/img/pokeapi/"+pokemon[i-1].id+".png'>"
 					html_str += "<p>"+pokemon[i - 1].name+"</p></a>"
 					html_str += "</div>";
@@ -262,6 +262,7 @@ a.tnail.active {
 <?php $this->load->view('partials/customer_header'); ?>
 <!-- top bar here -->
 <div class="row-fluid">
+
 <div id="types" class="span2">
 	<form>
 		<input type="text" placeholder="pok&eacute;mon name.">
@@ -317,23 +318,21 @@ a.tnail.active {
 <div id="main_box" class="span2" style="margin-top:35px;">
 	<!-- have the type listed here followed by the page number -->
 	
-	
+	<div>
+		  <ul class="pagination">
+		   
+		  </ul>
+		<!-- ul  id="pages_bar">
+			
+		</ul> -->
+	</div>
 	<div id="where_the_pokemon_go">
 		<!-- tems go here -->
 		<!-- 72 -->
 		
 		
-	</div>
-	<div>
-		<nav>
-		  <ul class="pagination">
-		  <li>test</li>   
-		  </ul>
-		</nav>
-		<ul  id="pages_bar">
-			
-		</ul>
-	</div>
+	</div >
+	
 </div>
 </div>
 </body>
